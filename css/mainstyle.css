@@ -60,12 +60,12 @@ header {
     cursor: pointer;
 }
 
-/*.toggleMenu.active {
+.toggleMenu.active {
     background: url(../src/closemenu.png);
     background-size: 25px;
     background-repeat: no-repeat;
     background-position: center;
-}*/
+}
 
 .navigation {
     position: fixed;
@@ -84,10 +84,10 @@ header {
     visibility: hidden;
 }
 
-/*.navigation.active {
+.navigation.active {
     opacity: 1;
     visibility: visible;
-}*/
+}
 
 .navigation li {
     list-style: none;
