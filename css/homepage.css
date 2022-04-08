@@ -88,6 +88,12 @@
     letter-spacing: 2px;
 }
 
+.contact .contactForm .row input:focus,
+.contact .contactForm .row2 input:focus,
+.contact .contactForm .row3 textarea:focus {
+    background-color: whitesmoke;
+}
+
 .contact .contactForm .row3 textarea {
     resize: none;
     height: 200px;

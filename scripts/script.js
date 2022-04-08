@@ -7,6 +7,11 @@ toggle.onclick = function() {
     navigation.classList.toggle("active");
 }
 
+window.addEventListener("scroll", function() {
+    const header = document.querySelector("header");
+    header.classList.toggle("sticky", window.scrollY > 0);
+});
+
 function toggleMenu() {
     toggle.classList.remove("active");
     navigation.classList.remove("active");
