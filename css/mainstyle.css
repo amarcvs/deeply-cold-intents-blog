@@ -59,6 +59,32 @@ header.sticky {
     padding: 10px 100px;
 }
 
+header ul {
+    display: flex;
+}
+
+header ul li {
+    list-style: none;
+}
+
+header ul li a {
+    margin: 0 0 0 30px;
+    text-decoration: none;
+    color: var(--black);
+}
+
+header ul li a:hover {
+    color: var(--details);
+}
+
+header.sticky ul li a {
+    color: var(--details);
+}
+
+header.sticky ul li a:hover {
+    color: var(--black);
+}
+
 .logo {
     position: relative;
     display: inline-block;
@@ -225,10 +251,20 @@ footer .footerMenu li a {
     letter-spacing: 2px;
 }
 
+footer .footerMenu li a:hover {
+    color: var(--details);
+}
+
 .copyright {
     color: var(--black);
     text-align: center;
     letter-spacing: 1px;
+}
+
+.copyright a {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 500;
 }
 
 /* cursor style */
