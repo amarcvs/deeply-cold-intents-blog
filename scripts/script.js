@@ -16,3 +16,43 @@ function toggleMenu() {
     toggle.classList.remove("active");
     navigation.classList.remove("active");
 }
+
+/* custom cursor animation */
+let html = document.documentElement;
+let body = document.body;
+let mouseCursor = document.querySelector(".cursor");
+let navLinks = document.querySelectorAll('a');
+let fullDcoumentHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+
+window.addEventListener('mousemove', cursor);
+
+function cursor(e) {
+    mouseCursor.style.top = e.pageY + "px";
+    mouseCursor.style.left = e.pageX + "px";
+
+    if(e.pageX > document.documentElement.clientWidth || e.pageY > fullDcoumentHeight - 24) {
+        mouseCursor.classList.add('hidecursor');
+        html.classList.add('showcursor');
+    } else {
+        mouseCursor.classList.remove('hidecursor');
+        html.classList.remove('showcursor');
+    }
+}
+
+navLinks.forEach(link => {
+    link.addEventListener("mouseover", () => {
+        mouseCursor.classList.add('cursor-grow');
+    });
+
+    link.addEventListener("mouseleave", () => {
+        mouseCursor.classList.remove('cursor-grow');
+    });
+});
+
+$(document).mouseleave(function () {
+    mouseCursor.style.display = 'none';
+});
+
+$(document).mouseenter(function () {
+    mouseCursor.style.display = 'block';
+});

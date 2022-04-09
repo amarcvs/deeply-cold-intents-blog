@@ -7,11 +7,32 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    cursor: none;
 }
 
 :root {
     --black: #373434;
+    --details: #39915d;
     --white: #FFFFFF;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--details);
+}
+
+::-moz-selection {
+    background: var(--details);
+    color: white;
+}
+
+::selection {
+    background: var(--details);
+    color: white;
 }
 
 body {
@@ -148,6 +169,7 @@ section {
     font-size: 1.4em;
     text-transform: uppercase;
     color: var(--black);
+    overflow-x: initial;
 }
 
 .title p {
@@ -207,4 +229,32 @@ footer .footerMenu li a {
     color: var(--black);
     text-align: center;
     letter-spacing: 1px;
+}
+
+/* cursor style */
+.cursor {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    position: absolute;
+    background-color: var(--details);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    transition-property: background, transform;
+    transform-origin: 100% 100%;
+    opacity: .5;
+    z-index: 10000;
+}
+
+.cursor-grow {
+    transform: scale(2);
+}
+
+.hidecursor {
+    display: none !important;
+}
+
+.showcursor {
+    cursor: initial !important;
 }
