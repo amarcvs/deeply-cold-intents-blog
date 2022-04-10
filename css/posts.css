@@ -55,3 +55,16 @@
 .addMargin {
     margin-top: 60px;
 }
+
+div#topics, div#latestposts {
+    margin-top: 100px;
+}
+
+.topic {
+    margin: 0px 10px 5px 10px;
+    padding: 5px 15px;
+    margin-top: 0px;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: initial;
+}
