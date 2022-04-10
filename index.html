@@ -17,11 +17,11 @@
         <a href="/" class="logo">|DCI|</a>
         <div class="toggleMenu navigation"></div>
         <ul class="">
-            <li><a href="#home" onclick="toggleMenu()">Home</a></li>
-            <li><a href="#" onclick="toggleMenu()">News</a></li>
-            <li><a href="#post" onclick="toggleMenu()">Posts</a></li>
-            <li><a href="#" onclick="toggleMenu()">About</a></li>
+            <li><a href="/" onclick="toggleMenu()">Home</a></li>
+            <li><a href="posts/" onclick="toggleMenu()">Posts</a></li>
             <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            <li><a href="about/" onclick="toggleMenu()">About</a></li>
+            <li><a href="news/" onclick="toggleMenu()">News</a></li>
         </ul>
     </header>
     
@@ -30,29 +30,25 @@
         <div class="contentBx">
             <h2>Deeply cold intents</h2>
             <h4>A blog with an alternative perspective.</h4>
-            <a href="#" class="btn">Go to posts</a>
+            <a href="posts/" class="btn">Go to posts</a>
         </div>
     </section>
-
-    <!--<section class="post" id="post">
-        /posts/
-    </section>-->
 
     <section class="contact" id="contact">
         <div class="title">
             <h2>Get in touch</h2>
             <p>Do not hesitate to contact me if you want to know more about me, about the blog or in case of a collaboration.</p>
         </div>
-        <form class="contactForm" action="" method="post" name="form" enctype="multipart/form-data">
+        <form class="contactForm" action="" method="post" name="form" enctype="multipart/form-data" onSubmit="return checkForm();">
             <div class="row">
-                <input type="text" name="name" placeholder="Name*" maxlength="30">
-                <input type="text" name="email" placeholder="E-mail*" maxlength="30">
+                <input type="text" name="name" placeholder="Name*" maxlength="30" required>
+                <input type="email" name="email" placeholder="E-mail*" maxlength="30" required>
             </div>
             <div class="row2">
                 <input type="text" name="subject" placeholder="Subject">
             </div>
             <div class="row3">
-                <textarea name="message" placeholder="Message*"></textarea>
+                <textarea name="message" placeholder="Message*" required></textarea>
             </div>
             <div class="row3">
                 <input type="submit" value="Send" class="btn">
@@ -61,13 +57,13 @@
     </section>
 
     <footer>
-        <a href="#" class="logo">BLOG</a>
+        <a href="/" class="logo">BLOG</a>
         <ul class="footerMenu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#">News</a></li>
-            <li><a href="#post">Posts</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="posts/">Posts</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="about/">About</a></li>
+            <li><a href="news/">News</a></li>
         </ul>
         <p class="copyright">Copyright &copy; 2022 <a href="https://www.deeplycoldintents.com">deeplycoldintents.com</a> &bull; All rights reserved.</p>
     </footer>

@@ -49,10 +49,15 @@ navLinks.forEach(link => {
     });
 });
 
-$(document).mouseleave(function () {
-    mouseCursor.style.display = 'none';
-});
+$(document).ready(function() {
+    $(document).mouseleave(function () {
+        mouseCursor.style.display = 'none';
+    });
 
-$(document).mouseenter(function () {
-    mouseCursor.style.display = 'block';
+    $(document).mouseenter(function () {
+        mouseCursor.style.display = 'block';
+    });
+
+    /* disabling autocomplete form input field */
+    $('input').attr('autocomplete','off');
 });
