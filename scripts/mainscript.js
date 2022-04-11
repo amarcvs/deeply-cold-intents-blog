@@ -20,8 +20,12 @@ function toggleMenu() {
 /* custom cursor animation */
 let html = document.documentElement;
 let body = document.body;
+
 let mouseCursor = document.querySelector(".cursor");
 let navLinks = document.querySelectorAll('a');
+let inputs = document.querySelectorAll("input");
+let textarea = document.querySelector("textarea");
+
 let fullDcoumentHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
 
 window.addEventListener('mousemove', cursor);
@@ -60,4 +64,9 @@ $(document).ready(function() {
 
     /* disabling autocomplete form input field */
     $('input').attr('autocomplete','off');
+
+    /* add weight to focused li-nav-item */
+    const pagepathname = window.location.pathname;
+    const page = pagepathname.replaceAll('/', '');
+    $(`li#li-${page} a`).addClass("addWeight");
 });

@@ -288,10 +288,19 @@ footer .footerMenu li a:hover {
     transform: scale(2);
 }
 
+.cursor-change {
+    background-color: var(--black);
+    transform: scale(2);
+}
+
 .hidecursor {
     display: none !important;
 }
 
 .showcursor {
     cursor: initial !important;
+}
+
+.addWeight {
+    font-weight: 600;
 }
