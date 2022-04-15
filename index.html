@@ -21,6 +21,7 @@
             <li><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
             <li><a href="/news/" onclick="toggleMenu()">News</a></li>
             <li><a href="/#contact" onclick="toggleMenu()">Contact</a></li>
+            <li><a href="/login/" onclick="toggleMenu()">Login</a></li>
         </ul>
     </header>
     
@@ -38,7 +39,7 @@
             <h2>Get in touch</h2>
             <p>Do not hesitate to contact me if you want to know more about me, about the blog or in case of a collaboration.</p>
         </div>
-        <form class="contactForm" action="" method="post" name="form" enctype="multipart/form-data" onSubmit="return checkForm();">
+        <form class="formDiv" action="php/sendEmail.php" method="post" name="form" enctype="multipart/form-data" onSubmit="return checkForm();">
             <div class="row">
                 <input type="text" name="name" placeholder="Name*" maxlength="30" required>
                 <input type="email" name="email" placeholder="E-mail*" maxlength="30" required>
@@ -50,7 +51,7 @@
                 <textarea name="message" placeholder="Message*" required></textarea>
             </div>
             <div class="row3">
-                <input type="submit" value="Send" class="btn">
+                <input type="submit" name="sendBtn" value="Send" class="btn">
             </div>
         </form>
     </section>
