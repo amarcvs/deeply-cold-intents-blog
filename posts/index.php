@@ -1,3 +1,7 @@
+<?php
+    include_once("../php/dbHandler.inc.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +25,7 @@
             <li id="li-posts"><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
             <li><a href="/news/" onclick="toggleMenu()">News</a></li>
             <li><a href="/#contact" onclick="toggleMenu()">Contact</a></li>
+            <li><a href="/login/" onclick="toggleMenu()">Login</a></li>
         </ul>
     </header>
     
@@ -30,53 +35,37 @@
             <p>These are the latest posts. If you want more, click on the button you see below.</p>
         </div>
         <div class="contentBx">
-            <div class="postsColumn">
-                <div class="postBx">
-                    <div class="imgBx">
-                        <img src="" alt="post1" class="cover">
-                    </div>
-                    <a href="#">
-                        <div class="textBx">
-                            <h3>[date]</h3>
-                            <h2>[title]</h2>
-                            <h3>#post1 - description</h3>
-                            <h4>[tags]</h4>
+            <?php
+                $postsQuery = 'SELECT * FROM post LIMIT 6';
+                
+                $result = pg_query($postsQuery);
+                if(!$result) exit('Query attempt failed. ' . pg_result_error($result));
+                
+                while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+                    echo 
+                    "<div class=\"postsColumn\">
+                        <div class=\"postBx\">
+                            <div class=\"imgBx\">
+                                <img src=\"".$line['p_img_url']."\" alt=\"post".$line['p_id']."\" class=\"cover\">
+                            </div>
+                            <a href=\"article.php?title=".$line['p_title']."&date=".$line['p_date']."\">
+                                <div class=\"textBx\">
+                                    <h2>".$line['p_title']."</h2>
+                                    <h3>".$line['p_text']."</h3>
+                                    <br/>
+                                    <h3><strong>".$line['p_author']."</strong> - ".$line['p_date']."</h3>
+                                    <h5>[tags]</h5>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-            </div>
+                    </div>
+                    
+                    ";
+                }
 
-            <div class="postsColumn">
-                <div class="postBx">
-                    <div class="imgBx">
-                        <img src="" alt="post2" class="cover">
-                    </div>
-                    <a href="#">
-                        <div class="textBx">
-                            <h3>[date]</h3>
-                            <h2>[title]</h2>
-                            <h3>#post2 - description</h3>
-                            <h4>[tags]</h4>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="postsColumn">
-                <div class="postBx">
-                    <div class="imgBx">
-                        <img src="" alt="post3" class="cover">
-                    </div>
-                    <a href="#">
-                        <div class="textBx">
-                            <h3>[date]</h3>
-                            <h2>[title]</h2>
-                            <h3>#post3 - description</h3>
-                            <h4>[tags]</h4>
-                        </div>
-                    </a>
-                </div>
-            </div>
+                if(!pg_free_result($result)) echo "Error on free the memory!";
+                pg_close($dbconn);
+            ?>
         </div>
 
         <div class="title">
@@ -86,9 +75,16 @@
 
         <br/><br/><hr/>
         <div class="title" id="topics">
-            <h2>Filter by topic</h2>
+            <h2>Search or filter by topic</h2>
+            <p>You can also use <a href="https://www.google.com/search?q=site%3Adeeplycoldintents.com%2Fposts+cybersecurity">Google</a>:</p>
+            <form class="formDiv" action="search/" method="post" name="form" enctype="multipart/form-data" onSubmit="return checkForm();">
+                <div class="row">
+                    <input type="search" name="search" placeholder="Search*" maxlength="30" required>
+                    <input type="submit" name="searchBtn" value="Search" class="btn">
+                </div>
+            </form>
+            <br/><br/>
             <p><a href="#" class="btn topic">Personal</a><a href="#" class="btn topic">Network security</a><a href="#" class="btn topic">Algorithms</a><a href="#" class="btn topic">Tips</a><a href="#" class="btn topic">Curiosities</a><a href="#" class="btn topic">Tools</a><a href="#" class="btn topic">Programming languages</a></p>
-
         </div>
     </section>
 

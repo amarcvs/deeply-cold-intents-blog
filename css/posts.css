@@ -21,6 +21,7 @@
     height: 400px;
     margin-top: 20px;
     overflow-y: hidden;
+    background-color: #dbdbdb;
 }
 
 .post .contentBx .postsColumn .postBx .textBx {
@@ -67,4 +68,13 @@ div#topics, div#latestposts {
     font-size: 13px;
     font-weight: 400;
     text-transform: initial;
+}
+
+input.btn {
+    margin-top: 0px;
+}
+
+.formDiv {
+    padding-left: 100px;
+    padding-right: 100px;
 }
