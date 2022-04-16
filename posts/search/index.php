@@ -31,58 +31,58 @@
     
     <section class="post" id="post">
         <div class="title" id="latestposts">
-    <?php
-        if(!(isset($_POST['searchBtn']))) {
-            header("Location: ../posts/");
-        }
-        
-        $search = $_POST['search'];
-        $searchQuery = "SELECT * FROM post WHERE p_title LIKE '%$search%' OR p_text LIKE '%$search%' OR p_author LIKE '%$search%' LIMIT 6"; /* OR p_date LIKE '%$search%'*/
+        <?php
+            if(!(isset($_POST['searchBtn']))) {
+                header("Location: /posts/");
+            }
 
-        $result = pg_query($searchQuery);
-        if(!$result) exit('Query attempt failed. ' . pg_result_error($result));
-        
-        echo "\t\t<h2>Post searched</h2>\n";
-        
-        $rows = pg_num_rows($result);
-        if(!$rows) 
-            echo "\t\t\t<p>There are no results matching your search!</p>\n"; 
-        else {
-            if($rows == 1) echo "\t\t\t<p>There is $rows result matching your search:</p>\n";
-            else echo "\t\t\t<p>There are $rows results matching your search:</p>\n";
-        } 
+            $search = $_POST['search'];
+            $searchQuery = "SELECT * FROM post WHERE p_title LIKE '%$search%' OR p_text LIKE '%$search%' OR p_author LIKE '%$search%' LIMIT 6"; /* OR p_date LIKE '%$search%'*/
+
+            $result = pg_query($searchQuery);
+            if(!$result) exit('Query attempt failed. ' . pg_result_error($result));
             
-        echo "\t\t</div>\n";
-        echo "\t\t<div class=\"contentBx\">";
-        
-        while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-            echo "\n\t\t\t<div class=\"postsColumn\">
-                <div class=\"postBx\">
-                    <div class=\"imgBx\">
-                        <img src=\"".$line['p_img_url']."\" alt=\"post".$line['p_id']."\" class=\"cover\">
-                    </div>
-                    <a href=\"../posts/article.php?title=".$line['p_title']."&date=".$line['p_date']."\">
-                        <div class=\"textBx\">
-                            <h2>".$line['p_title']."</h2>
-                            <h3>".$line['p_text']."</h3>
-                            <br/>
-                            <h3><strong>".$line['p_author']."</strong> - ".$line['p_date']."</h3>
-                            <h5>[tags]</h5>
+            echo "\t\t<h2>Post searched</h2>\n";
+
+            $rows = pg_num_rows($result);
+            if(!$rows)
+                echo "\t\t\t<p>There are no results matching your search!</p>\n";
+            else {
+                if($rows == 1) echo "\t\t\t<p>There is $rows result matching your search:</p>\n";
+                else echo "\t\t\t<p>There are $rows results matching your search:</p>\n";
+            }
+
+            echo "\t\t</div>\n";
+            echo "\t\t<div class=\"contentBx\">";
+
+            while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+                echo "\n\t\t\t<div class=\"postsColumn\">
+                    <div class=\"postBx\">
+                        <div class=\"imgBx\">
+                            <img src=\"".$line['p_img_url']."\" alt=\"post".$line['p_id']."\" class=\"cover\">
                         </div>
-                    </a>
-                </div>
-            </div>";
-        }
-        echo "\n\t\t</div>\n";
+                        <a href=\"../article/article.php?title=".$line['p_title']."&date=".$line['p_date']."\">
+                            <div class=\"textBx\">
+                                <h2>".$line['p_title']."</h2>
+                                <h3>".$line['p_text']."</h3>
+                                <br/>
+                                <h3><strong>".$line['p_author']."</strong> - ".$line['p_date']."</h3>
+                                <h5>[tags]</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>";
+            }
+            echo "\n\t\t</div>\n";
 
-        if(!pg_free_result($result)) echo "Error on free the memory!";
-        pg_close($dbconn);
-    ?>
+            include_once("../../php/clearResources.inc.php");
 
-        <div class="title">
-            <a href="#" class="btn addMargin">Load more</a>
-        </div>
-
+            if($rows > 6)
+                echo
+                "<div class=\"title\">
+                    <a href=\"#\" class=\"btn addMargin\">Load more</a>
+                </div>";
+        ?>
         <br/><br/><hr/>
         <div class="title" id="topics">
             <h2>Search or filter by topic</h2>
@@ -112,6 +112,6 @@
 
     <div class="cursor"></div>
 
-    <script type="text/javascript" src="../../scripts/mainscript.js"></script>
+    <script type="text/javascript" src="../../javascript/mainscript.js"></script>
 </body>
 </html>

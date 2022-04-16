@@ -31,48 +31,47 @@
     
     <section class="post" id="post">
         <div class="title" id="latestposts">
-            <h2>Latest post</h2>
+            <h2>Latest posts</h2>
             <p>These are the latest posts. If you want more, click on the button you see below.</p>
         </div>
         <div class="contentBx">
-            <?php
-                $postsQuery = 'SELECT * FROM post LIMIT 6';
-                
-                $result = pg_query($postsQuery);
-                if(!$result) exit('Query attempt failed. ' . pg_result_error($result));
-                
-                while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-                    echo 
-                    "<div class=\"postsColumn\">
-                        <div class=\"postBx\">
-                            <div class=\"imgBx\">
-                                <img src=\"".$line['p_img_url']."\" alt=\"post".$line['p_id']."\" class=\"cover\">
-                            </div>
-                            <a href=\"article.php?title=".$line['p_title']."&date=".$line['p_date']."\">
-                                <div class=\"textBx\">
-                                    <h2>".$line['p_title']."</h2>
-                                    <h3>".$line['p_text']."</h3>
-                                    <br/>
-                                    <h3><strong>".$line['p_author']."</strong> - ".$line['p_date']."</h3>
-                                    <h5>[tags]</h5>
-                                </div>
-                            </a>
+        <?php
+            $postsQuery = 'SELECT * FROM post LIMIT 6';
+
+            $result = pg_query($postsQuery);
+            if(!$result) exit('Query attempt failed. ' . pg_result_error($result));
+
+            while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+                echo
+                "<div class=\"postsColumn\">
+                    <div class=\"postBx\">
+                        <div class=\"imgBx\">
+                            <img src=\"".$line['p_img_url']."\" alt=\"post".$line['p_id']."\" class=\"cover\">
                         </div>
+                        <a href=\"article/article.php?title=".$line['p_title']."&date=".$line['p_date']."\">
+                            <div class=\"textBx\">
+                                <h2>".$line['p_title']."</h2>
+                                <h3>".$line['p_text']."</h3>
+                                <br/>
+                                <h3><strong>".$line['p_author']."</strong> - ".$line['p_date']."</h3>
+                                <h5>[tags]</h5>
+                            </div>
+                        </a>
                     </div>
-                    
-                    ";
-                }
+                </div>
 
-                if(!pg_free_result($result)) echo "Error on free the memory!";
-                pg_close($dbconn);
-            ?>
-        </div>
+                ";
+            }
 
-        <div class="title">
-            <a href="#" class="btn addMargin">Load more</a>
-        </div>
-        <!--<p>Or <a href="https://www.google.com/search?q=site%3Adeeplycoldintents.com%2Fposts+cybersecurity">search with Google</a>.</p>-->
+            include_once("../php/clearResources.inc.php");
+            echo "\n\t\t</div>\n";
 
+            if($rows > 6)
+                echo
+                "<div class=\"title\">
+                    <a href=\"#\" class=\"btn addMargin\">Load more</a>
+                </div>";
+        ?>
         <br/><br/><hr/>
         <div class="title" id="topics">
             <h2>Search or filter by topic</h2>
@@ -102,6 +101,6 @@
 
     <div class="cursor"></div>
 
-    <script type="text/javascript" src="../scripts/mainscript.js"></script>
+    <script type="text/javascript" src="../javascript/mainscript.js"></script>
 </body>
 </html>

@@ -39,10 +39,9 @@
                     echo "Welcome $username!";
                 }
             }
+
+            include_once("clearResources.inc.php");
         }
-        
-        if(!pg_free_result($result)) echo "Error on free the memory!";
-        pg_close($dbconn);
     ?>
 </body>
 </html>
