@@ -13,7 +13,7 @@
 
 :root {
     --black: #373434;
-    --details: #39915d;
+    --details: #5900ac; /*8400ff*//*#39915d*/;
     --white: #FFFFFF;
 }
 
@@ -36,7 +36,7 @@
 }
 
 body {
-    min-height: 150vh;
+    /*min-height: 150vh;*/
     background: #e0e0e0
 }
 
@@ -197,6 +197,10 @@ section {
     color: var(--black);
 }
 
+.title h2 span {
+    text-transform: initial;
+}
+
 .title p {
     margin-top: 40px;
     max-width: 700px;
@@ -218,7 +222,7 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: #e0e0e0;
+    background: whitesmoke;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -261,7 +265,7 @@ footer .footerMenu li a:hover {
     height: 1.5rem;
     border-radius: 50%;
     position: absolute;
-    background-color: var(--details);
+    background-color: var(--black);
     transform: translate(-50%, -50%);
     pointer-events: none;
     transition: all 0.3s ease;
@@ -272,11 +276,6 @@ footer .footerMenu li a:hover {
 }
 
 .cursor-grow {
-    transform: scale(2);
-}
-
-.cursor-change {
-    background-color: var(--black);
     transform: scale(2);
 }
 
@@ -332,7 +331,6 @@ footer .footerMenu li a:hover {
     color: var(--black);
     font-size: 16px;
     font-weight: 400;
-    text-transform: uppercase;
     letter-spacing: 2px;
 }
 
@@ -356,4 +354,39 @@ footer .footerMenu li a:hover {
 .formDiv .row3 input[type="submit"]:hover {
     background: var(--black);
     color: var(--white);
+}
+
+/* form style changes for an article creation */
+main .formDiv {
+    max-width: initial;
+}
+
+main .formDiv .row {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+main input[type="text"] {
+    border: 0px solid !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    font-size: 2.5rem !important;
+    letter-spacing: 5px !important;
+    text-transform: uppercase;
+}
+
+main textarea {
+    border: 0px solid !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    margin: 0 0.5rem;
+    font-size: 1.3rem !important;
+    resize: vertical !important;
+}
+
+main input[type="text"]:focus,
+main textarea:focus {
+    border-bottom: 1px solid var(--black) !important;
+    background-color: white !important;
+}
+
+.formDiv .row3 textarea {
+    height: 250px;
 }

@@ -21,6 +21,7 @@
     height: 400px;
     margin-top: 20px;
     background-color: #dbdbdb;
+    overflow-y: hidden;
 }
 
 .post .contentBx .postsColumn .postBx .textBx {
@@ -43,6 +44,14 @@
 .post .contentBx .postsColumn .postBx:hover .textBx {
     opacity: 0.9;
     visibility: visible;
+}
+
+.post .contentBx .postsColumn .postBx .textBx a {
+    text-decoration: none;
+}
+
+.post .contentBx .postsColumn .postBx .textBx h2 {
+    text-transform: uppercase;
 }
 
 .post .contentBx .postsColumn .postBx .textBx h3 {

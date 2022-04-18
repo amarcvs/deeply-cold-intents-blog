@@ -9,11 +9,11 @@ allFormFields.push(textarea);
 
 allFormFields.forEach(link => {
     link.addEventListener("mouseover", () => {
-        mouseCursor.classList.add('cursor-change');
+        mouseCursor.classList.add('cursor-grow');
     });
 
     link.addEventListener("mouseleave", () => {
-        mouseCursor.classList.remove('cursor-change');
+        mouseCursor.classList.remove('cursor-grow');
     });
 });
 

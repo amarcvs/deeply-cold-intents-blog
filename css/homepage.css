@@ -3,14 +3,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.1);
 }
 
 .home .contentBx {
     position: relative;
     z-index: 1;
-    /*background: var(--white);*/
-    padding: 70px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@
 .home .contentBx h2 {
     /*font-family: 'Josefin Slab', serif;*/
     font-size: 2.2em;
-    font-weight: 200;
+    font-weight: 300;
     color: var(--black);
     letter-spacing: 2px;
     padding-bottom: 5px;
@@ -37,10 +37,13 @@
     color: var(--black);
 }
 
-/* contact section */
-.contact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+/* canvas home animation */
+canvas {
+    position: fixed;
+    z-index: -1;
+}
+
+.home {
+    top: 0;
+    left: 0;
 }

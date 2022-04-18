@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Deeply cold intents</title>
+    <title>Contact | Deeply cold intents</title>
     
     <link rel="icon" href="">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../css/mainstyle.css">
-    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/contact.css">
 </head>
 
 <body>
@@ -20,23 +20,29 @@
             <li><a href="/about/" onclick="toggleMenu()">About</a></li>
             <li><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
             <li><a href="/news/" onclick="toggleMenu()">News</a></li>
-            <li><a href="/contact/" onclick="toggleMenu()">Contact</a></li>
-            <li id="li-login"><a href="/login/" onclick="toggleMenu()">Login</a></li>
+            <li id="li-contact"><a href="/contact/" onclick="toggleMenu()">Contact</a></li>
+            <li><a href="/login/" onclick="toggleMenu()">Login</a></li>
         </ul>
     </header>
-    
-    <section class="login" id="login">
-        <div class="title">
-            <h2>Login</h2>
-            <p>Access reserved for admins to manage the blog.</p>
+
+    <section class="contact">
+        <div class="title" id="contact">
+            <h2>Get in touch</h2>
+            <p>Do not hesitate to contact me if you want to know more about me, on a particular post or in case of collaboration.</p>
         </div>
-        <form class="formDiv" action="../php/checkLogin.php" method="post" name="form" enctype="multipart/form-data" onSubmit="return checkForm();">
+        <form class="formDiv" action="../php/sendEmail.php" method="post" name="form" enctype="multipart/form-data" onSubmit="return checkForm();">
             <div class="row">
+                <input type="text" name="name" placeholder="NAME*" maxlength="30" required>
                 <input type="email" name="email" placeholder="E-MAIL*" maxlength="30" required>
-                <input type="password" name="password" placeholder="PASSWORD" required>
+            </div>
+            <div class="row2">
+                <input type="text" name="subject" placeholder="SUBJECT">
             </div>
             <div class="row3">
-                <input type="submit" name="loginBtn" value="Login" class="btn">
+                <textarea name="message" placeholder="MESSAGE*" required></textarea>
+            </div>
+            <div class="row3">
+                <input type="submit" name="sendBtn" value="Send" class="btn">
             </div>
         </form>
     </section>
@@ -56,5 +62,6 @@
     <div class="cursor"></div>
 
     <script type="text/javascript" src="../javascript/mainscript.js"></script>
+    <script type="text/javascript" src="../javascript/homepage.js"></script>
 </body>
 </html>

@@ -20,11 +20,11 @@
             <li><a href="/about/" onclick="toggleMenu()">About</a></li>
             <li><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
             <li><a href="/news/" onclick="toggleMenu()">News</a></li>
-            <li><a href="/#contact" onclick="toggleMenu()">Contact</a></li>
+            <li><a href="/contact/" onclick="toggleMenu()">Contact</a></li>
             <li><a href="/login/" onclick="toggleMenu()">Login</a></li>
         </ul>
     </header>
-    
+
     <section class="home" id="home">
         <!-- <img src="" alt="home" class="featureImage"> -->
         <div class="contentBx">
@@ -34,36 +34,14 @@
         </div>
     </section>
 
-    <section class="contact" id="contact">
-        <div class="title">
-            <h2>Get in touch</h2>
-            <p>Do not hesitate to contact me if you want to know more about me, about the blog or in case of a collaboration.</p>
-        </div>
-        <form class="formDiv" action="php/sendEmail.php" method="post" name="form" enctype="multipart/form-data" onSubmit="return checkForm();">
-            <div class="row">
-                <input type="text" name="name" placeholder="Name*" maxlength="30" required>
-                <input type="email" name="email" placeholder="E-mail*" maxlength="30" required>
-            </div>
-            <div class="row2">
-                <input type="text" name="subject" placeholder="Subject">
-            </div>
-            <div class="row3">
-                <textarea name="message" placeholder="Message*" required></textarea>
-            </div>
-            <div class="row3">
-                <input type="submit" name="sendBtn" value="Send" class="btn">
-            </div>
-        </form>
-    </section>
-
     <footer>
         <a href="/" class="logo">BLOG</a>
         <ul class="footerMenu">
             <li><a href="/">Home</a></li>
-            <li><a href="about/">About</a></li>
-            <li><a href="posts/">Posts</a></li>
-            <li><a href="news/">News</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/posts/">Posts</a></li>
+            <li><a href="/news/">News</a></li>
+            <li><a href="/contact/">Contact</a></li>
         </ul>
         <p class="copyright">Copyright &copy; 2022 <a href="https://www.deeplycoldintents.com">deeplycoldintents.com</a> &bull; All rights reserved.</p>
     </footer>
