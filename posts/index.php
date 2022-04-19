@@ -24,7 +24,7 @@
             <li><a href="/about/" onclick="toggleMenu()">About</a></li>
             <li id="li-posts"><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
             <li><a href="/news/" onclick="toggleMenu()">News</a></li>
-            <li><a href="/#contact" onclick="toggleMenu()">Contact</a></li>
+            <li><a href="/contact/" onclick="toggleMenu()">Contact</a></li>
             <li><a href="/login/" onclick="toggleMenu()">Login</a></li>
         </ul>
     </header>
@@ -42,19 +42,28 @@
             if(!$result) exit('Query attempt failed. ' . pg_result_error($result));
 
             while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+                $topics = "";
+                $topicsArray = explode(',', trim($line['p_topics'], '{}'));
+                for($i = 0; $i < sizeof($topicsArray); ++$i) {
+                    $topics .= "<a href=\"search/topics.php?tag=$topicsArray[$i]\" class=\"btn topic\">".$topicsArray[$i]."</a>";
+                }
+
+                $dateTime = date('F d Y', strtotime($line['p_date']));
+
                 echo
                 "<div class=\"postsColumn\">
                     <div class=\"postBx\">
                         <div class=\"imgBx\">
                             <img src=\"".$line['p_img_url']."\" alt=\"post".$line['p_id']."\" class=\"cover\">
                         </div>
-                        <a href=\"article/article.php?title=".$line['p_title']."&date=".$line['p_date']."\">
+                        <a href=\"article.php?title=".$line['p_title']."&date=".$line['p_date']."\">
                             <div class=\"textBx\">
+                                <h3>".$dateTime."<!--<br/><strong>".$line['p_author']."</strong>--></h3>
+                                <br/><br/>
                                 <h2>".$line['p_title']."</h2>
                                 <h3>".$line['p_text']."</h3>
                                 <br/>
-                                <h3><strong>".$line['p_author']."</strong> - ".$line['p_date']."</h3>
-                                <h5>[tags]</h5>
+                                <h5>".$topics."</h5>
                             </div>
                         </a>
                     </div>
@@ -78,12 +87,12 @@
             <p>You can also use <a href="https://www.google.com/search?q=site%3Adeeplycoldintents.com%2Fposts+cybersecurity">Google</a>:</p>
             <form class="formDiv" action="search/" method="post" name="form" enctype="multipart/form-data" onSubmit="return checkForm();">
                 <div class="row">
-                    <input type="search" name="search" placeholder="Search*" maxlength="30" required>
+                    <input type="search" name="search" placeholder="SEARCH*" maxlength="30" required>
                     <input type="submit" name="searchBtn" value="Search" class="btn">
                 </div>
             </form>
             <br/><br/>
-            <p><a href="#" class="btn topic">Personal</a><a href="#" class="btn topic">Network security</a><a href="#" class="btn topic">Algorithms</a><a href="#" class="btn topic">Tips</a><a href="#" class="btn topic">Curiosities</a><a href="#" class="btn topic">Tools</a><a href="#" class="btn topic">Programming languages</a></p>
+            <p><a href="search/topics.php?tag=personal" class="btn topic">Personal</a><a href="search/topics.php?tag=networking" class="btn topic">Network security</a><a href="search/topics.php?tag=algorithms" class="btn topic">Algorithms</a><a href="search/topics.php?tag=tips" class="btn topic">Tips</a><a href="search/topics.php?tag=curiosities" class="btn topic">Curiosities</a><a href="search/topics.php?tag=tools" class="btn topic">Tools</a><a href="search/topics.php?tag=languages" class="btn topic">Programming languages</a></p>
         </div>
     </section>
 
@@ -94,7 +103,7 @@
             <li><a href="/about/">About</a></li>
             <li><a href="/posts/">Posts</a></li>
             <li><a href="/news/">News</a></li>
-            <li><a href="/#contact">Contact</a></li>
+            <li><a href="/contact/">Contact</a></li>
         </ul>
         <p class="copyright">Copyright &copy; 2022 <a href="https://www.deeplycoldintents.com">deeplycoldintents.com</a> &bull; All rights reserved.</p>
     </footer>

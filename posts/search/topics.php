@@ -31,67 +31,63 @@
     
     <section class="post" id="post">
         <div class="title" id="latestposts">
-        <?php
-            if(!(isset($_POST['searchBtn']))) {
-                header("Location: /posts/");
-            }
+    <?php
+        if(!(isset($_GET['tag']))) {
+            header("Location: /posts/");
+        }
+        
+        $topic = $_GET['tag'];
+        
+        $searchForTopicQuery = "SELECT * FROM post WHERE '$topic' = ANY(p_topics)";
 
-            $search = $_POST['search'];
-            $searchQuery = "SELECT * FROM post WHERE p_title LIKE '%$search%' OR p_text LIKE '%$search%' OR p_author LIKE '%$search%' LIMIT 6"; /* OR p_date LIKE '%$search%'*/
-
-            $result = pg_query($searchQuery);
-            if(!$result) exit('Query attempt failed. ' . pg_result_error($result));
-            
-            echo "\t\t<h2>Posts found with \"<span>".$search."</span>\"</h2>\n";
-
-            $rows = pg_num_rows($result);
-            if(!$rows)
+        $result = pg_query($searchForTopicQuery);
+        if(!$result) exit('Query attempt failed. ' . pg_result_error($result));
+        
+        echo "\t\t<h2>Tagged \"<span>".$topic."</span>\"</h2>\n";
+        
+        $rows = pg_num_rows($result);
+        if(!$rows)
                 echo "\t\t\t<p>There are no results matching your search!</p>\n";
-            else {
-                if($rows == 1) echo "\t\t\t<p>There is $rows result matching your search:</p>\n";
-                else echo "\t\t\t<p>There are $rows results matching your search:</p>\n";
+        else {
+            if($rows == 1) echo "\t\t\t<p>There is $rows result matching your search:</p>\n";
+            else echo "\t\t\t<p>There are $rows results matching your search:</p>\n";
+        }
+            
+        echo "\t\t</div>\n";
+        echo "\t\t<div class=\"contentBx\">";
+        
+        while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+            $topics = "";
+            $topicsArray = explode(',', trim($line['p_topics'], '{}'));
+            for($i = 0; $i < sizeof($topicsArray); ++$i) {
+                $topics .= "<a href=\"topics.php?tag=$topicsArray[$i]\" class=\"btn topic\">".$topicsArray[$i]."</a>";
             }
+            
+            $dateTime = date('F d Y', strtotime($line['p_date']));
 
-            echo "\t\t</div>\n";
-            echo "\t\t<div class=\"contentBx\">";
-
-            while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-                $topics = "";
-                $topicsArray = explode(',', trim($line['p_topics'], '{}'));
-                for($i = 0; $i < sizeof($topicsArray); ++$i) {
-                    $topics .= "<a href=\"topics.php?tag=$topicsArray[$i]\" class=\"btn topic\">".$topicsArray[$i]."</a>";
-                }
-
-                $dateTime = date('F d Y', strtotime($line['p_date']));
-
-                echo "\n\t\t\t<div class=\"postsColumn\">
-                    <div class=\"postBx\">
-                        <div class=\"imgBx\">
-                            <img src=\"".$line['p_img_url']."\" alt=\"post".$line['p_id']."\" class=\"cover\">
-                        </div>
-                        <a href=\"../article.php?title=".$line['p_title']."&date=".$line['p_date']."\">
-                            <div class=\"textBx\">
-                                <h3>".$dateTime."<!--<br/><strong>".$line['p_author']."</strong>--></h3>
-                                <br/><br/>
-                                <h2>".$line['p_title']."</h2>
-                                <h3>".$line['p_text']."</h3>
-                                <br/>
-                                <h5>".$topics."</h5>
-                            </div>
-                        </a>
+            echo "\n\t\t\t<div class=\"postsColumn\">
+                <div class=\"postBx\">
+                    <div class=\"imgBx\">
+                        <img src=\"".$line['p_img_url']."\" alt=\"post".$line['p_id']."\" class=\"cover\">
                     </div>
-                </div>";
-            }
-            echo "\n\t\t</div>\n";
+                    <a href=\"../article.php?title=".$line['p_title']."&date=".$line['p_date']."\">
+                        <div class=\"textBx\">
+                            <h3>".$dateTime."<!--<br/><strong>".$line['p_author']."</strong>--></h3>
+                            <br/><br/>
+                            <h2>".$line['p_title']."</h2>
+                            <h3>".$line['p_text']."</h3>
+                            <br/>
+                            <h5>".$topics."</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>";
+        }
+        echo "\n\t\t</div>\n";
 
-            include_once("../../php/clearResources.inc.php");
+        include_once("../../php/clearResources.inc.php");
+    ?>
 
-            if($rows > 6)
-                echo
-                "<div class=\"title\">
-                    <a href=\"#\" class=\"btn addMargin\">Load more</a>
-                </div>";
-        ?>
         <br/><br/><hr/>
         <div class="title" id="topics">
             <h2>Search or filter by topic</h2>
