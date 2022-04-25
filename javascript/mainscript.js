@@ -68,5 +68,7 @@ $(document).ready(function() {
     /* add weight to focused li-nav-item */
     const pagepathname = window.location.pathname;
     const page = pagepathname.replaceAll('/', '');
-    $(`li#li-${page} a`).addClass("addWeight");
+    
+    if (page.indexOf('.php') !== -1 || page === "postssearch") $(`li#li-posts a`).addClass("addWeight");
+    else $(`li#li-${page} a`).addClass("addWeight");
 });

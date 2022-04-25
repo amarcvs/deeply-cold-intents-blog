@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,14 +25,21 @@
             <li><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
             <li><a href="/news/" onclick="toggleMenu()">News</a></li>
             <li id="li-contact"><a href="/contact/" onclick="toggleMenu()">Contact</a></li>
-            <li><a href="/login/" onclick="toggleMenu()">Login</a></li>
+            <?php
+                if(isset($_SESSION["user_id"])) {
+                    echo "<li><a href=\"/profile/\" onclick=\"toggleMenu()\"><u>".$_SESSION["user_name"]."</u></a></li>";
+                }
+                else {
+                    echo "<li><a href=\"/login/\" onclick=\"toggleMenu()\">Login</a></li>";
+                }
+            ?>
         </ul>
     </header>
 
     <section class="contact">
         <div class="title" id="contact">
             <h2>Get in touch</h2>
-            <p>Do not hesitate to contact me if you want to know more about me, on a particular post or in case of collaboration.</p>
+            <p>Do not hesitate to contact me if you want to know more about the blog, on a particular post or in case of collaboration.</p>
         </div>
         <form class="formDiv" action="../php/sendEmail.php" method="post" name="form" enctype="multipart/form-data" onSubmit="return checkForm();">
             <div class="row">

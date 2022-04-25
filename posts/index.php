@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once("../php/dbHandler.inc.php");
 ?>
 
@@ -25,7 +26,14 @@
             <li id="li-posts"><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
             <li><a href="/news/" onclick="toggleMenu()">News</a></li>
             <li><a href="/contact/" onclick="toggleMenu()">Contact</a></li>
-            <li><a href="/login/" onclick="toggleMenu()">Login</a></li>
+            <?php
+                if(isset($_SESSION["user_id"])) {
+                    echo "<li><a href=\"/profile/\" onclick=\"toggleMenu()\"><u>".$_SESSION["user_name"]."</u></a></li>";
+                }
+                else {
+                    echo "<li><a href=\"/login/\" onclick=\"toggleMenu()\">Login</a></li>";
+                }
+            ?>
         </ul>
     </header>
     
@@ -36,7 +44,7 @@
         </div>
         <div class="contentBx">
         <?php
-            $postsQuery = 'SELECT * FROM post LIMIT 6';
+            $postsQuery = 'SELECT * FROM post ORDER BY p_id DESC LIMIT 6';
 
             $result = pg_query($postsQuery);
             if(!$result) exit('Query attempt failed. ' . pg_result_error($result));
@@ -45,7 +53,7 @@
                 $topics = "";
                 $topicsArray = explode(',', trim($line['p_topics'], '{}'));
                 for($i = 0; $i < sizeof($topicsArray); ++$i) {
-                    $topics .= "<a href=\"search/topics.php?tag=$topicsArray[$i]\" class=\"btn topic\">".$topicsArray[$i]."</a>";
+                    if($topicsArray[$i] != "") $topics .= "<a href=\"search/topics.php?tag=".urlencode(trim($topicsArray[$i], '"'))."\" class=\"btn topic\">".trim($topicsArray[$i], '"')."</a>";
                 }
 
                 $dateTime = date('F d Y', strtotime($line['p_date']));
@@ -54,9 +62,9 @@
                 "<div class=\"postsColumn\">
                     <div class=\"postBx\">
                         <div class=\"imgBx\">
-                            <img src=\"".$line['p_img_url']."\" alt=\"post".$line['p_id']."\" class=\"cover\">
+                            <img src=\"uploads/".$line['p_img_url']."\" alt=\"post".$line['p_id']."\" class=\"cover\">
                         </div>
-                        <a href=\"article.php?title=".$line['p_title']."&date=".$line['p_date']."\">
+                        <a href=\"article.php?title=".urlencode($line['p_title'])."&date=".$line['p_date']."\">
                             <div class=\"textBx\">
                                 <h3>".$dateTime."<!--<br/><strong>".$line['p_author']."</strong>--></h3>
                                 <br/><br/>
@@ -81,6 +89,7 @@
                     <a href=\"#\" class=\"btn addMargin\">Load more</a>
                 </div>";
         ?>
+
         <br/><br/><hr/>
         <div class="title" id="topics">
             <h2>Search or filter by topic</h2>

@@ -387,6 +387,10 @@ main textarea:focus {
     background-color: white !important;
 }
 
-.formDiv .row3 textarea {
-    height: 250px;
+main .formDiv .row3 textarea {
+    height: 400px;
+}
+
+main ::placeholder {
+    color: grey;
 }

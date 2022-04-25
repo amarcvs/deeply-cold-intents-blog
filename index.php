@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,12 +25,20 @@
             <li><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
             <li><a href="/news/" onclick="toggleMenu()">News</a></li>
             <li><a href="/contact/" onclick="toggleMenu()">Contact</a></li>
-            <li><a href="/login/" onclick="toggleMenu()">Login</a></li>
+            <?php
+                if(isset($_SESSION["user_id"])) {
+                    echo "<li><a href=\"/profile/\" onclick=\"toggleMenu()\"><u>".$_SESSION["user_name"]."</u></a></li>";
+                }
+                else {
+                    echo "<li><a href=\"/login/\" onclick=\"toggleMenu()\">Login</a></li>";
+                }
+            ?>
         </ul>
     </header>
 
+    <canvas id=""></canvas>
     <section class="home" id="home">
-        <!-- <img src="" alt="home" class="featureImage"> -->
+        <!--<img src="/src/glen-carrie-_oNISBwMTwo-unsplash.jpg" alt="home" class="featureImage">-->
         <div class="contentBx">
             <h2>Deeply cold intents</h2>
             <h4>A blog with an alternative perspective.</h4>
@@ -50,5 +62,6 @@
 
     <script type="text/javascript" src="javascript/mainscript.js"></script>
     <script type="text/javascript" src="javascript/homepage.js"></script>
+    <script type="text/javascript" src="javascript/purpleCodedRain.js"></script>
 </body>
 </html>
