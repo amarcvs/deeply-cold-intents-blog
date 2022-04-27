@@ -1,0 +1,6 @@
+.profile-img {
+    width: 8rem;
+    height: 8rem;
+    background: url(../src/uploads/profiles/default-user.jpg) no-repeat center center / cover;
+    border-radius: 0.5rem;
+}
