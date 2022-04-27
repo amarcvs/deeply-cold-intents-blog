@@ -32,6 +32,7 @@
 
             $_SESSION["user_id"] = $accountExists["a_id"];
             $_SESSION["user_name"] = $accountExists["a_username"];
+            $_SESSION["user_img"] = $accountExists["a_img_profile"];
 
             include_once("../php/clearResources.inc.php");
             header("Location: ../");

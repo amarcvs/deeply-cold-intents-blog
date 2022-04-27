@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once("../php/dbHandler.inc.php");
 ?>
 
@@ -25,26 +26,34 @@
             <li id="li-posts"><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
             <li><a href="/news/" onclick="toggleMenu()">News</a></li>
             <li><a href="/contact/" onclick="toggleMenu()">Contact</a></li>
-            <li><a href="/login/" onclick="toggleMenu()">Login</a></li>
+            <?php
+                if(isset($_SESSION["user_id"])) {
+                    echo "<li><a href=\"/profile/\" onclick=\"toggleMenu()\"><u>".$_SESSION["user_name"]."</u></a></li>";
+                }
+                else {
+                    echo "<li><a href=\"/login/\" onclick=\"toggleMenu()\">Login</a></li>";
+                }
+            ?>
         </ul>
     </header>
 
     <div class="container">
-        <div class="hero"></div>
+        <div class="hero" id="hero"></div>
 
         <main>
         <?php
             if(!(isset($_GET['title']))) {
                 header("Location: /posts/");
+                exit();
             }
-            
-            $title = $_GET['title'];
+
+            $title = urldecode($_GET['title']);
             $date = $_GET['date'];
 
-            $searchPostQuery = "SELECT * FROM post WHERE p_title = '$title' AND p_date = '$date'";
+            $searchPostQuery = "SELECT * FROM post INNER JOIN (SELECT a_username, a_img_profile FROM account) AS account on p_author = a_username WHERE p_title = '$title' AND p_date = '$date'";
 
             $result = pg_query($searchPostQuery);
-            if(!$result) exit('Query attempt failed. ' . pg_result_error($result));
+            if(!$result) exit('Query attempt failed. ' . pg_last_error($dbconn));
 
             $rows = pg_num_rows($result);
             if(!$rows) {
@@ -55,28 +64,39 @@
                 echo "\t\t\t<p>A collision occurred. More than one article matches this search!</p>\n";
                 exit();
             }
-            
+
             $line = pg_fetch_array($result, null, PGSQL_ASSOC);
 
             $topics = "";
             $topicsArray = explode(',', trim($line['p_topics'], '{}'));
             for($i = 0; $i < sizeof($topicsArray); ++$i) {
-                $topics .= "<a href=\"search/topics.php?tag=$topicsArray[$i]\">".$topicsArray[$i]."</a>";
+                if($topicsArray[$i] != "") $topics .= "<a href=\"search/topics.php?tag=".urlencode(trim($topicsArray[$i], '"'))."\">".trim($topicsArray[$i], '"')."</a>";
             }
 
-            //https://stackoverflow.com/questions/13563665/changing-date-format-to-word-in-php
             $dateTime = date('F d Y', strtotime($line['p_date']));
-            
+
+            $isUpdated = $line['p_is_updated'];
+            $update = "";
+            if($isUpdated == 't') $update = "<br/>Updated by <em>". $line['p_who_updated'] . "</em> on " . date('F d Y', strtotime($line['p_when_updated']));;
+
+            $operations = "";
+            if($_SESSION["user_id"]) $operations =
+            "<div class=\"button\">
+                <a href=\"manageArticle.php?title=".urlencode($line['p_title'])."&text=".urlencode($line['p_text'])."&date=".$line['p_date']."&img=".$line['p_img_url']."\" class=\"btn\">Update</a>
+                <a href=\"deleteArticle.php?title=".urlencode($line['p_title'])."&date=".$line['p_date']."&img=".$line['p_img_url']."\" class=\"btn\">Delete</a>
+            </div>";
+
             echo 
             "<h2>".$line['p_title']."</h2>
             <div class=\"profile-container\">
                 <div class=\"profile\">
-                    <div class=\"img-container\"></div>
+                    <div class=\"img-container\" id=\"img-container\"></div>
                     <div class=\"text\">
                         <h3>".$line['p_author']."</h3>
-                        <p>".$dateTime."</p>
+                        <p>Published on ".$dateTime.$update."</p>
                     </div>
                 </div>
+                ".$operations."
             </div>
             <div class=\"content\">
                 <p>".$line['p_text']."</p>
@@ -86,8 +106,7 @@
             </div>";
 
             include_once("../php/clearResources.inc.php");
-            
-            //https://stackoverflow.com/questions/24791305/how-to-change-title-dynamically-after-the-header-is-included
+
             $pageTitle = "Article n.".$line['p_id']." | Deeply cold intents";
             echo "<script>document.title = '".$pageTitle."';</script>";
         ?>
@@ -108,5 +127,14 @@
     <div class="cursor"></div>
 
     <script type="text/javascript" src="../javascript/mainscript.js"></script>
+    <script type="text/javascript">
+        const hero = document.getElementById("hero");
+        hero.style.backgroundImage = "url(<?php echo("../src/uploads/".$line['p_img_url']);?>)";
+        
+        if(<?php if(is_null($line['a_img_profile'])) echo 0; else echo 1; ?>) {
+            const imgContainer = document.getElementById("img-container");
+            imgContainer.style.backgroundImage = "url(<?php echo("../src/uploads/profiles/".$line['a_img_profile']);?>)";
+        }
+    </script>
 </body>
 </html>

@@ -24,7 +24,7 @@ p {
 .hero {
     max-width: 114rem;
     height: 40rem;
-    background: url(../src/article-banner.jpg) no-repeat center center / cover;
+    background: url() no-repeat center center / cover;
     margin: 5rem auto;
 }
 
@@ -61,7 +61,7 @@ main .profile-container .profile {
 main .profile-container .profile .img-container {
     width: 6rem;
     height: 6rem;
-    background: url(../src/avatar.jpg) no-repeat center center / cover;
+    background: url(../src/uploads/profiles/default-user.jpg) no-repeat center center / cover;
     border-radius: 0.5rem;
 }
 
@@ -89,7 +89,7 @@ main .content h4 {
     margin: 2rem 0;
 }
 
-main .content .content-img.container {
+main .content .content-img-container {
     width: 100%;
     height: 35rem;
     background: url(../src/blog-detail.jpg) no-repeat center center / cover;

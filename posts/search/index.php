@@ -46,7 +46,7 @@
             }
 
             $search = $_POST['search'];
-            $searchQuery = "SELECT * FROM post WHERE p_title LIKE '%$search%' OR p_text LIKE '%$search%' OR p_author LIKE '%$search%' ORDER BY p_id DESC LIMIT 6"; /* OR p_date LIKE '%$search%'*/
+            $searchQuery = "SELECT * FROM post WHERE p_title LIKE '%$search%' OR p_text LIKE '%$search%' OR p_author LIKE '%$search%' ORDER BY p_id DESC LIMIT 6";
 
             $result = pg_query($searchQuery);
             if(!$result) exit('Query attempt failed. ' . pg_result_error($result));
@@ -76,7 +76,7 @@
                 echo "\n\t\t\t<div class=\"postsColumn\">
                     <div class=\"postBx\">
                         <div class=\"imgBx\">
-                            <img src=\"../uploads/".$line['p_img_url']."\" alt=\"post".$line['p_id']."\" class=\"cover\">
+                            <img src=\"../../src/uploads/".$line['p_img_url']."\" alt=\"post".$line['p_id']."\" class=\"cover\">
                         </div>
                         <a href=\"../article.php?title=".urlencode($line['p_title'])."&date=".$line['p_date']."\">
                             <div class=\"textBx\">
@@ -92,8 +92,6 @@
                 </div>";
             }
             echo "\n\t\t</div>\n";
-
-            include_once("../../php/clearResources.inc.php");
 
             if($rows > 6)
                 echo
@@ -113,7 +111,27 @@
                 </div>
             </form>
             <br/><br/>
-            <p><a href="topics.php?tag=personal" class="btn topic">Personal</a><a href="topics.php?tag=networking" class="btn topic">Network security</a><a href="topics.php?tag=algorithms" class="btn topic">Algorithms</a><a href="topics.php?tag=tips" class="btn topic">Tips</a><a href="topics.php?tag=curiosities" class="btn topic">Curiosities</a><a href="topics.php?tag=tools" class="btn topic">Tools</a><a href="topics.php?tag=languages" class="btn topic">Programming languages</a></p>
+            <?php
+                $topicsQuery = 'SELECT p_topics AS topics FROM post';
+
+                $result = pg_query($topicsQuery);
+                if(!$result) exit('Query attempt failed. ' . pg_last_error($dbconn));
+
+                $allTopics = "";
+                $allTopicsArray = [];
+                while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+                    $allTopicsArray = array_merge($allTopicsArray, explode(',', trim($line['topics'], '{}')));
+                }
+
+                $allTopicsArray = array_unique($allTopicsArray);
+                sort($allTopicsArray);
+                for($i = 0; $i < sizeof($allTopicsArray); ++$i) {
+                    if($allTopicsArray[$i] != "") $allTopics .= "<a href=\"topics.php?tag=".trim($allTopicsArray[$i], '"')."\" class=\"btn topic\">".trim($allTopicsArray[$i], '"')."</a>";
+                }
+
+                include_once("../php/clearResources.inc.php");
+                echo "<p>".$allTopics."</p>";
+            ?>
         </div>
     </section>
 
