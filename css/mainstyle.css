@@ -394,3 +394,11 @@ main .formDiv .row3 textarea {
 main ::placeholder {
     color: grey;
 }
+
+/* hidden anchor for load-more btn */
+.hidden-anchor {
+    display: block;
+    position: relative;
+    top: -120px;
+    visibility: hidden;
+}

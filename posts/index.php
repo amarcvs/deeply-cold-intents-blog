@@ -42,9 +42,21 @@
             <h2>Latest posts</h2>
             <p>These are the latest posts. If you want more, click on the button you see below.</p>
         </div>
-        <div class="contentBx">
+        <div class="contentBx" name="contentBx">
         <?php
-            $postsQuery = 'SELECT * FROM post ORDER BY p_id DESC LIMIT 6';
+            $limit = 3;
+            if(isset($_GET['more'])) {
+                $limit += $_GET['more'];
+            }
+
+            $countPostsQuery = 'SELECT * FROM post ORDER BY p_id';
+
+            $result = pg_query($countPostsQuery);
+            if(!$result) exit('Query attempt failed. ' . pg_last_error($dbconn));
+
+            $rows = pg_num_rows($result);
+
+            $postsQuery = "SELECT * FROM post ORDER BY p_id DESC LIMIT '$limit'";
 
             $result = pg_query($postsQuery);
             if(!$result) exit('Query attempt failed. ' . pg_last_error($dbconn));
@@ -82,10 +94,14 @@
 
             echo "\n\t\t</div>\n";
 
-            if($rows > 6)
+            if($rows > 6 && $rows > $limit)
                 echo
-                "<div class=\"title\">
-                    <a href=\"#\" class=\"btn addMargin\">Load more</a>
+                "
+                <div class=\"hidden-anchor\">
+                    <a name=\"more-posts\" href=\"\"></a>
+                </div>
+                <div class=\"title\">
+                    <a href=\"#more-posts\" class=\"btn addMargin\" id=\"load-more\">Load more</a>
                 </div>";
         ?>
 
@@ -139,5 +155,6 @@
     <div class="cursor"></div>
 
     <script type="text/javascript" src="../javascript/mainscript.js"></script>
+    <script type="text/javascript" src="../javascript/loadPosts.js"></script>
 </body>
 </html>
