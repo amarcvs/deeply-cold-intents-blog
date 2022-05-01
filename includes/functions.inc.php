@@ -1,4 +1,6 @@
 <?php
+    include_once("utility.inc.php");
+
     /* login functions */
     function emptyFieldsLogin($username, $pw) {
         $result;
@@ -30,11 +32,10 @@
         else if($hashedPassword == $accountExists["a_pw"]) {
             session_start();
 
-            $_SESSION["user_id"] = $accountExists["a_id"];
+            $_SESSION["user_id"]   = $accountExists["a_id"];
             $_SESSION["user_name"] = $accountExists["a_username"];
-            $_SESSION["user_img"] = $accountExists["a_img_profile"];
+            $_SESSION["user_img"]  = $accountExists["a_img_profile"];
 
-            include_once("../php/clearResources.inc.php");
             header("Location: ../");
             exit();
         }

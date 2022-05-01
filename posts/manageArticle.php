@@ -1,49 +1,14 @@
-<?php
-    session_start();
-    include_once("../php/dbHandler.inc.php");
-
-    if(!(isset($_SESSION['user_id']))) {
-        header("Location: /");
-        exit();
-    }
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article | Deeply cold intents</title>
-    
-    <link rel="icon" href="">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="../css/mainstyle.css">
-    <link rel="stylesheet" type="text/css" href="../css/article.css">
-</head>
-
-<body>
-    <header>
-        <a href="/" class="logo">|DCI|</a>
-        <div class="toggleMenu navigation"></div>
-        <ul class="">
-            <li><a href="/about/" onclick="toggleMenu()">About</a></li>
-            <li id="li-posts"><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
-            <li><a href="/news/" onclick="toggleMenu()">News</a></li>
-            <li><a href="/contact/" onclick="toggleMenu()">Contact</a></li>
-            <?php
-                if(isset($_SESSION["user_id"])) {
-                    echo "<li><a href=\"/profile/\" onclick=\"toggleMenu()\"><u>".$_SESSION["user_name"]."</u></a></li>";
-                }
-                else {
-                    echo "<li><a href=\"/login/\" onclick=\"toggleMenu()\">Login</a></li>";
-                }
-            ?>
-        </ul>
-    </header>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/header.php") ?>
 
     <div class="container">
         <div class="hero"></div>
+
+        <?php
+            if(!(isset($_SESSION['user_id']))) {
+                header("Location: /");
+                exit();
+            }
+        ?>
 
         <main>
             <form class="formDiv" action="<?php if($_GET["title"]) echo "updateArticle.php?title=".urlencode($_GET["title"])."&oldDate=".$_GET["date"]."&img=".urlencode($_GET['img']); else echo "createArticle.php";?>" method="post" name="form" enctype="multipart/form-data" onSubmit="return checkForm();">
@@ -66,6 +31,7 @@
                 </div>
                 <div class="row3">
                     <input type="submit" name="createBtn" value="PUBLIC" class="btn">
+                    <a href="article.php?" name="previewBtn" class="btn" target="_blank">Preview</a>
                 </div>
             </form>
 
@@ -93,21 +59,5 @@
             </script>
         </main>
     </div>
-    <footer>
-        <a href="/" class="logo">BLOG</a>
-        <ul class="footerMenu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about/">About</a></li>
-            <li><a href="/posts/">Posts</a></li>
-            <li><a href="/news/">News</a></li>
-            <li><a href="/contact/">Contact</a></li>
-        </ul>
-        <p class="copyright">Copyright &copy; 2022 <a href="https://www.deeplycoldintents.com">deeplycoldintents.com</a> &bull; All rights reserved.</p>
-    </footer>
 
-    <div class="cursor"></div>
-
-    <script type="text/javascript" src="../javascript/mainscript.js"></script>
-    <script type="text/javascript" src="../javascript/article.js"></script>
-</body>
-</html>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/footer.php") ?>

@@ -1,6 +1,5 @@
 <?php
     session_start();
-    include_once("../php/dbHandler.inc.php");
     
     if(!(isset($_GET['title']))) {
         header("Location: /");
@@ -12,16 +11,16 @@
         exit();
     }
 
-    $title = urldecode($_GET["title"]);
-    $date = $_GET["date"];
+    include_once("../includes/utility.php");
+
+    $title  = urldecode($_GET["title"]);
+    $date   = $_GET["date"];
     $imgToDelete = urldecode($_GET["img"]);
     
-    $deleteQuery = "DELETE FROM post WHERE p_title = '$title' AND p_date = '$date';";
+    $deleteQuery = "DELETE FROM post WHERE p_title = $1 AND p_date = $2;";
 
-    $result = pg_query($deleteQuery);
-    if(!$result) exit('Query attempt failed. ' . pg_last_error($dbconn));
+    $result = makeAQuery($deleteQuery, array($title, $date));
 
-    include_once("../php/clearResources.inc.php");
     $dirPath = "../src/uploads/";
     include_once("../includes/deleteImg.inc.php");
 

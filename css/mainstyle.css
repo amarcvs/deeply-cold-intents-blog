@@ -395,6 +395,13 @@ main ::placeholder {
     color: grey;
 }
 
+/* error messages */
+.errorMessage {
+    margin-top: 20px;
+    color: red;
+    font-weight: 400;
+}
+
 /* hidden anchor for load-more btn */
 .hidden-anchor {
     display: block;

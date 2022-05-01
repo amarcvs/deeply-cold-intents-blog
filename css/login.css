@@ -5,10 +5,3 @@
     align-items: center;
     flex-direction: column;
 }
-
-/* error messages */
-.errorMessage {
-    margin-top: 20px;
-    color: red;
-    font-weight: 400;
-}
