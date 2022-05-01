@@ -1,6 +1,88 @@
 <?php
     include_once("utility.inc.php");
 
+    /* sign up functions */
+    function emptyFieldsSignup($email, $username, $pw, $pwRepeated) {
+        $result;
+        if(empty($email) || empty($username) || empty($pw) || empty($pwRepeated)) {
+            $result = true;
+        }
+        else {
+            $result = false;
+        }
+        return $result;
+    }
+
+    function invalidEmail($email) {
+        $result;
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $result = true;
+        }
+        else {
+            $result = false;
+        }
+        return $result;
+    }
+
+    function invalidUsername($username) {
+        $result;
+        if(!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+            $result = true;
+        }
+        else {
+            $result = false;
+        }
+        return $result;
+    }
+
+    function passwordMatch($pw, $pwRepeated) {
+        $result;
+        if($pw !== $pwRepeated) {
+            $result = true;
+        }
+        else {
+            $result = false;
+        }
+        return $result;
+    }
+
+    function accountExists($dbconn, $email, $username) {
+        $email = strtolower($email); // to make the email field case-insensitive
+
+        $existsQuery = "SELECT * FROM account WHERE a_email = $1 OR a_username = $2;";
+
+        $result = makeAQuery($existsQuery, array($email, $username));
+        /*if(!$result) {
+            //exit('Query attempt failed. ' . pg_last_error($dbconn));
+            header("Location: ../signup/index.php?error=queryfailed");
+            exit();
+        }*/
+
+        if($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+            return $line;
+        }
+
+        else {
+            $result = false;
+            return $result;
+        }
+    }
+
+    function createUser($dbconn, $email, $username, $pw) {
+        $hashedPassword     = hash('SHA512', $pw);
+        $createAccountQuery = "INSERT INTO account (a_email, a_username, a_pw) VALUES ($1, $2, $3);";
+
+        $result = makeAQuery($createAccountQuery, array($email, $username, $hashedPassword));
+        /*if(!$result) {
+            //exit('Query attempt failed. ' . pg_last_error($dbconn));
+            header("Location: ../signup/index.php?error=queryfailed");
+            exit();
+        }*/
+
+        header("Location: ../signup/index.php?error=none");
+        exit();
+    }
+
     /* login functions */
     function emptyFieldsLogin($username, $pw) {
         $result;

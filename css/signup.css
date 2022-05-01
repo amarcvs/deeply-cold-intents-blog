@@ -1,0 +1,11 @@
+/* signup section */
+.signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.formDiv .row2 {
+    grid-gap: 20px;
+}

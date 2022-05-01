@@ -23,6 +23,7 @@
             case 'login':   echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/login.css\">");    break;
             case 'contact': echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/contact.css\">");  break;
             case 'profile': echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/profile.css\">");  break;
+            case 'signup':  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/signup.css\">");   break;
         }
     ?>
     <?php 
