@@ -9,7 +9,7 @@
             <a href="/posts/manageArticle.php" class="btn">Create a post</a>
             <a href="/includes/logout.inc.php" class="btn">Logout</a>
 
-            <form class="formDiv" name="form" action= <?php echo "../includes/changeImg.inc.php?img=". $_SESSION['user_img']?> method="post" enctype="multipart/form-data" onSubmit="return checkForm();">
+            <form class="formDiv" name="form" action= <?php echo "../includes/changeImg.inc.php?img=". $_SESSION['user_img']?> method="post" enctype="multipart/form-data">
                 <div class="row">
                     <input type="file" name="fileToUpload" id="fileToUpload" required>
                     <input type="submit" name="createBtn" value="Upload Image" class="btn">

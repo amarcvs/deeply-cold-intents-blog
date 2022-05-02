@@ -11,7 +11,7 @@
         exit();
     }
 
-    include_once("../includes/utility.php");
+    include_once("../includes/utility.inc.php");
 
     $title  = urldecode($_GET["title"]);
     $date   = $_GET["date"];

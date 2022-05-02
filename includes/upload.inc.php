@@ -46,6 +46,7 @@
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             // header("Location: ./profile?result=uploaded");
+            // header("Location: ../profile/");
         } else {
             // echo "Sorry, there was an error uploading your file.";
             header("Location: createArticle?result=error");

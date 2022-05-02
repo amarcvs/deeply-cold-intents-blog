@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    include_once("utility.php");
+    include_once("utility.inc.php");
 
     if(!(isset($_POST['createBtn']))) {
         header("Location: /");
@@ -22,7 +22,7 @@
     $_SESSION['user_img'] = $newImg;
 
     $updateImgQuery = "UPDATE account SET a_img_profile = $1 WHERE a_username = $2;";
-    $result = makeAQuery($updateImgQuery, array($newImg, $username));
+    makeAQuery($updateImgQuery, array($newImg, $username));
 
     header("Location: /profile/");
 ?>
