@@ -50,13 +50,7 @@
         $email = strtolower($email); // to make the email field case-insensitive
 
         $existsQuery = "SELECT * FROM account WHERE a_email = $1 OR a_username = $2;";
-
-        $result = makeAQuery($existsQuery, array($email, $username));
-        /*if(!$result) {
-            //exit('Query attempt failed. ' . pg_last_error($dbconn));
-            header("Location: ../signup/index.php?error=queryfailed");
-            exit();
-        }*/
+        $result = makeAQuery($existsQuery, array($email, $username), "checkForms");
 
         if($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
             return $line;
@@ -70,14 +64,9 @@
 
     function createUser($dbconn, $email, $username, $pw) {
         $hashedPassword     = hash('SHA512', $pw);
-        $createAccountQuery = "INSERT INTO account (a_email, a_username, a_pw) VALUES ($1, $2, $3);";
 
-        $result = makeAQuery($createAccountQuery, array($email, $username, $hashedPassword));
-        /*if(!$result) {
-            //exit('Query attempt failed. ' . pg_last_error($dbconn));
-            header("Location: ../signup/index.php?error=queryfailed");
-            exit();
-        }*/
+        $createAccountQuery = "INSERT INTO account (a_email, a_username, a_pw) VALUES ($1, $2, $3);";
+        makeAQuery($createAccountQuery, array($email, $username, $hashedPassword), "checkForms");
 
         header("Location: ../signup/index.php?error=none");
         exit();

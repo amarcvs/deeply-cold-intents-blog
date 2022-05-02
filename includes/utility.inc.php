@@ -64,11 +64,17 @@
         return $allTopics;
     }
 
-    function makeAQuery($query, $array) {
+    function makeAQuery($query, $array, $from = "") {
         include_once($_SERVER['DOCUMENT_ROOT']."/includes/dbHandler.inc.php");
 
         $result = pg_query_params(/*$dbconn, */$query, $array);
-        if(!$result) exit('Query attempt failed. ' . pg_last_error($dbconn));
+        if(!$result && $from == "checkForms") {
+            // exit('Query attempt failed. ' . pg_last_error($dbconn));
+            header("Location: ../signup/index.php?error=queryfailed");
+            exit();
+        }
+        else if(!$result) exit('Query attempt failed. ' . pg_last_error($dbconn));
+
         $res = $result;
         include_once($_SERVER['DOCUMENT_ROOT']."/includes/clearResources.inc.php");
 

@@ -20,17 +20,15 @@
             case '':        echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/homepage.css\">"); break;
             case 'about':   echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/about.css\">");    break;
             case 'posts':   echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/posts.css\">");    break;
-            case 'login':   echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/login.css\">");    break;
             case 'contact': echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/contact.css\">");  break;
             case 'profile': echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/profile.css\">");  break;
-            case 'signup':  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/signup.css\">");   break;
         }
-    ?>
-    <?php 
-        
-        if(strpos($uriPage, 'article') || strpos($uriPage, 'manageArticle'))
+
+        if(strpos($uriPage, 'article') !== false|| strpos($uriPage, 'manageArticle') !== false)
                                         echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/article.css\">");
-        if(strpos($uriPage, 'search'))  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/posts.css\">");
+        if(strpos($uriPage, 'search')!== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/posts.css\">");
+        if(strpos($uriPage, 'login') !== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/login.css\">");
+        if(strpos($uriPage, 'signup')!== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/signup.css\">");
     ?>
 </head>
 

@@ -398,8 +398,13 @@ main ::placeholder {
 /* error messages */
 .errorMessage {
     margin-top: 20px;
-    color: red;
+    color: var(--details);
     font-weight: 400;
+    list-style: initial;
+}
+
+input:required:focus:invalid {
+    border: 1px solid var(--details);
 }
 
 /* hidden anchor for load-more btn */

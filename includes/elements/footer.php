@@ -15,16 +15,16 @@
     <script type="text/javascript" src="/javascript/mainscript.js"></script>
     <?php
         switch ($uriPage) {
-            case '':            echo("<script type=\"text/javascript\" src=\"javascript/homepage.js\"></script>"); 
-                                echo("<script type=\"text/javascript\" src=\"javascript/purpleCodedRain.js\"></script>");   break;
+            case '':            echo("<script type=\"text/javascript\" src=\"/javascript/homepage.js\"></script>");
+                                echo("<script type=\"text/javascript\" src=\"/javascript/purpleCodedRain.js\"></script>");  break;
             case 'posts':       echo("<script type=\"text/javascript\" src=\"/javascript/loadPosts.js\"></script>");        break;
-            case 'login':       echo("");                                                                                   break;
-            case 'profile':     echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/profile.css\">");              break;
+            case 'profile':     echo("");                                                                                   break;
         }
     ?>
 <?php 
-    if(strpos($uriPage, 'article') || $uriPage == 'profile') include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/loadImg.php");
-    if(strpos($uriPage, 'manageArticle')) echo("<script type=\"text/javascript\" src=\"/javascript/article.js\"></script>");
+    if(strpos($uriPage, 'article') !== false || $uriPage == 'profile') include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/loadImg.php");
+    if(strpos($uriPage, 'manageArticle') !== false) echo("<script type=\"text/javascript\" src=\"/javascript/article.js\"></script>");
+    if(strpos($uriPage, 'signup') !== false || strpos($uriPage, 'login') !== false || strpos($uriPage, 'contact') !== false || strpos($uriPage, 'posts') !== false) echo("<script type=\"text/javascript\" src=\"/javascript/checkForms.js\"></script>")
 ?>
     
 </body>

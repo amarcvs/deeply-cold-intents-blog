@@ -5,7 +5,7 @@
             <h2>Login</h2>
             <p>Access reserved for admin and mods to manage the blog! If you want to be part of the team, apply via the form in the <a href="/contact/">contact section</a>.</p>
         </div>
-        <form class="formDiv" action="../includes/login.inc.php" method="post" name="form" enctype="multipart/form-data" onSubmit="return checkForm();">
+        <form class="formDiv" action="../includes/login.inc.php" method="post" name="form" id="loginform" enctype="multipart/form-data" onSubmit="return checkLoginForm();">
             <div class="row">
                 <input type="text" name="username" placeholder="E-MAIL/USERNAME*" maxlength="30">
                 <input type="password" name="password" placeholder="PASSWORD*">
@@ -14,6 +14,7 @@
                 <input type="submit" name="loginBtn" value="Log in" class="btn">
             </div>
         </form>
+        <p class="errorMessage" id="errorMessage"><p>
         <?php
             if(isset($_GET["error"])) {
                 if($_GET["error"] == "emptyfields") {
