@@ -96,61 +96,6 @@ header.sticky ul li a:hover {
     letter-spacing: 2px;
 }
 
-.toggleMenu {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background: url(../src/menu.png);
-    background-size: 30px;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-}
-
-.toggleMenu.active {
-    background: url(../src/closemenu.png);
-    background-size: 25px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.navigation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: var(--white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 999;
-    transition: 0.25s;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.navigation.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.navigation li {
-    list-style: none;
-    margin: 10px 0;
-}
-
-.navigation li a {
-    color: var(--black);
-    font-size: 1.2em;
-    letter-spacing: 4px;
-    display: inline-block;
-    font-weight: 400;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
 section {
     position: relative;
     padding: 100px;

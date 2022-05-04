@@ -30,13 +30,14 @@
         if(strpos($uriPage, 'login') !== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/login.css\">");
         if(strpos($uriPage, 'signup')!== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/signup.css\">");
     ?>
+    <link rel="stylesheet" type="text/css" href="/css/mobile.css">
 </head>
 
 <body>
     <header>
         <a href="/" class="logo">|DCI|</a>
-        <div class="toggleMenu navigation"></div>
-        <ul class="">
+        <div class="toggleMenu" onclick="toggleMenu();"></div>
+        <ul class="navigation">
             <li id="li-about"><a href="/about/" onclick="toggleMenu()">About</a></li>
             <li id="li-posts"><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
             <li id="li-news"><a href="/news/" onclick="toggleMenu()">News</a></li>
