@@ -3,11 +3,11 @@
     <section class="post" id="post">
         <div class="title" id="latestposts">
             <h2>Latest posts</h2>
-            <p>These are the latest posts. If you want more, click on the button you see below.</p>
+            <p>The latest posts published.</p>
         </div>
         <div class="contentBx" name="contentBx">
         <?php
-            $limit = 3;
+            $limit = 4;
             if(isset($_GET['more'])) {
                 $limit += $_GET['more'];
             }

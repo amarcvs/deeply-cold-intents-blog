@@ -1,5 +1,5 @@
 <?php 
-    if($rows > 3 && $rows > $limit)
+    if($rows > 4 && $rows > $limit)
         echo
         "
         <div class=\"hidden-anchor\">

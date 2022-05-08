@@ -21,7 +21,8 @@
             case 'about':   echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/about.css\">");    break;
             case 'posts':   echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/posts.css\">");    break;
             case 'contact': echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/contact.css\">");  break;
-            case 'profile': echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/profile.css\">");  break;
+            case 'profile': echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/profile.css\">");
+                            echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/bootstrap/bootstrap.css\">"); break;
         }
 
         if(strpos($uriPage, 'article') !== false|| strpos($uriPage, 'manageArticle') !== false)
@@ -29,6 +30,7 @@
         if(strpos($uriPage, 'search')!== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/posts.css\">");
         if(strpos($uriPage, 'login') !== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/login.css\">");
         if(strpos($uriPage, 'signup')!== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/signup.css\">");
+        if(strpos($uriPage, 'manageArticle')!== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/manageArticle.css\">");
     ?>
     <link rel="stylesheet" type="text/css" href="/css/mobile.css">
 </head>
@@ -40,14 +42,10 @@
         <ul class="navigation">
             <li id="li-about"><a href="/about/" onclick="toggleMenu()">About</a></li>
             <li id="li-posts"><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
-            <li id="li-news"><a href="/news/" onclick="toggleMenu()">News</a></li>
             <li id="li-contact"><a href="/contact/" onclick="toggleMenu()">Contact</a></li>
             <?php
                 if(isset($_SESSION["user_id"])) {
                     echo("<li id=\"li-profile\"><a href=\"/profile/\" onclick=\"toggleMenu()\"><u>".$_SESSION["user_name"]."</u></a></li>");
-                }
-                else {
-                    echo("<li id=\"li-login\"><a href=\"/login/\" onclick=\"toggleMenu()\">Login</a></li>");
                 }
             ?>
         </ul>

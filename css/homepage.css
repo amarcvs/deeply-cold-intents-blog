@@ -1,15 +1,18 @@
 /* home section */
+header {
+    display: none;
+}
 .home {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(245, 245, 245, 0.1);
+    background-color: var(--thirdblack);
+    padding-top: 0;
 }
 
 .home .contentBx {
     position: relative;
-    z-index: 1;
-    background: rgba(255, 255, 255, 0.8);
+    z-index: 100;
     padding: 50px;
     display: flex;
     justify-content: center;
@@ -18,11 +21,10 @@
 }
 
 .home .contentBx h2 {
-    /*font-family: 'Josefin Slab', serif;*/
-    font-size: 2.2em;
+    font-size: 10.2em;
     font-weight: 300;
-    color: var(--black);
-    letter-spacing: 2px;
+    color: var(--details);
+    letter-spacing: 20px;
     padding-bottom: 5px;
     text-align: center;
     text-transform: uppercase;
@@ -30,20 +32,27 @@
 
 .home .contentBx h4 {
     font-size: 1.2em;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 4px;
     text-align: center;
     text-transform: uppercase;
-    color: var(--black);
+    color: var(--white);
+    margin-top: 50px;
 }
 
-/* canvas home animation */
-canvas {
+/* home effect */
+.home-effect {
     position: fixed;
-    z-index: -1;
+    opacity: 1;
+    z-index: 1;
 }
 
-.home {
-    top: 0;
-    left: 0;
+.intro {
+    opacity: 0;
+    visibility: hidden;
+    transition: 2s;
+}
+
+.letter {
+    transition: .10s;
 }

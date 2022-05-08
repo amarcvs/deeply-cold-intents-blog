@@ -6,6 +6,14 @@
             <li><a href="/posts/">Posts</a></li>
             <li><a href="/news/">News</a></li>
             <li><a href="/contact/">Contact</a></li>
+            <?php
+                if(isset($_SESSION["user_id"])) {
+                    echo("<li><a href=\"/profile/\"><u>".$_SESSION["user_name"]."</u></a></li>");
+                }
+                else {
+                    echo("<li><a href=\"/login/\">login</a></li>");
+                }
+            ?>
         </ul>
         <p class="copyright">Copyright &copy; 2022 <a href="https://www.deeplycoldintents.com">deeplycoldintents.com</a> &bull; All rights reserved.</p>
     </footer>
@@ -16,9 +24,8 @@
     <?php
         switch ($uriPage) {
             case '':            echo("<script type=\"text/javascript\" src=\"/javascript/homepage.js\"></script>");
-                                echo("<script type=\"text/javascript\" src=\"/javascript/purpleCodedRain.js\"></script>");  break;
-            case 'posts':       echo("<script type=\"text/javascript\" src=\"/javascript/loadPosts.js\"></script>");        break;
-            case 'profile':     echo("");                                                                                   break;
+                                echo("<script type=\"text/javascript\" src=\"/javascript/encryptedText.js\"></script>");  break;
+            case 'posts':       echo("<script type=\"text/javascript\" src=\"/javascript/loadPosts.js\"></script>");      break;
         }
     ?>
 <?php 

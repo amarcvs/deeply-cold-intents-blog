@@ -107,7 +107,7 @@
             $_SESSION["user_name"] = $accountExists["a_username"];
             $_SESSION["user_img"]  = $accountExists["a_img_profile"];
 
-            header("Location: ../");
+            header("Location: ../profile/");
             exit();
         }
     }

@@ -39,14 +39,13 @@
 
             $operations = "";
             if($_SESSION["user_id"]) $operations =
-            "<div class=\"button\">
+            "<div class=\"tags\">
                 <a href=\"manageArticle.php?title=".urlencode($line['p_title'])."&text=".urlencode($line['p_text'])."&date=".$line['p_date']."&img=".$line['p_img_url']."\" class=\"btn\">Update</a>
                 <a href=\"deleteArticle.php?title=".urlencode($line['p_title'])."&date=".$line['p_date']."&img=".$line['p_img_url']."\" class=\"btn\">Delete</a>
             </div>";
 
             echo 
-            "<h2>".$line['p_title']."</h2>
-            <div class=\"profile-container\">
+            "<div class=\"profile-container\">
                 <div class=\"profile\">
                     <div class=\"img-container\" id=\"img-container\"></div>
                     <div class=\"text\">
@@ -56,6 +55,7 @@
                 </div>
                 ".$operations."
             </div>
+            <h2>".$line['p_title']."</h2>
             <div class=\"content\">
                 <p>".$line['p_text']."</p>
             </div>
@@ -63,7 +63,7 @@
                 ".$topics."
             </div>";
 
-            $pageTitle = "Article n.".$line['p_id']." | Deeply cold intents";
+            $pageTitle = $line['p_title']." | Deeply cold intents";
             echo "<script>document.title = '".$pageTitle."';</script>";
         ?>
         </main>

@@ -1,0 +1,50 @@
+input#titlebox,
+textarea,
+input#fileToUpload,
+input[type="text"]#topic-bar {
+    background-color: var(--white) !important;
+    color: var(--black) !important;
+    border-color: white;
+}
+
+label {
+    color: var(--black);
+}
+
+input#fileToUpload {
+    color: var(--black) !important;
+}
+
+.btn {
+    background-color: var(--details) !important;
+    border: 1px solid var(--details) !important;
+    color: var(--black) !important;
+    margin-left: 20px !important;
+}
+
+.btn:hover {
+    background-color: var(--black) !important;
+    border: 1px solid var(--black) !important;
+    color: var(--details) !important;
+}
+
+main input[type="text"]#topic-bar {
+   font-size: 1.4rem !important;
+}
+
+main input[type="text"]#topic-bar:focus {
+    outline: none !important;
+}
+
+.topic-selection.row {
+    display: flex;
+    margin: 0;
+}
+
+.formDiv .row {
+    margin-top: 0px;
+}
+
+main .formDiv .row3 textarea {
+    margin-bottom: 40px;
+}

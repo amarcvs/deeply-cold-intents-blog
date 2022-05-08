@@ -38,7 +38,7 @@
                             <h2>".$line['p_title']."</h2>
                             <h3>".substr($line['p_text'], 0, 300)." . . .</h3>
                             <br/>
-                            <h5>".$topics."</h5>
+                            <!--<h5>".$topics."</h5>-->
                         </div>
                     </a>
                 </div>

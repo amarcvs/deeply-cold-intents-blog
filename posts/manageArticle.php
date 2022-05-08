@@ -18,16 +18,17 @@
                 <div class="row3">
                     <textarea name="text" placeholder="TEXT" required><?php if($_GET["text"]) echo urldecode($_GET["text"]); ?></textarea>
                 </div>
-                <div class="row">
-                    <label for="img">SELECT IMAGE FOR BANNER:</label>
-                    <input type="file" id="fileToUpload" name="fileToUpload" accept="image/*" <?php if(!$_GET["title"]) echo "required"; ?>>
-                </div>
-                <div class="topic-selection">
-                    <div id="newtopic">
-                        <input type="text" id="topic-bar" name="topics[]" placeholder="Insert a topic..." required>
-                        <a class="btn" id="push">Add</a>
+                <div class="row" style="display:flex;">
+                    <div class="row">
+                        <input type="file" id="fileToUpload" name="fileToUpload" accept="image/*" <?php if(!$_GET["title"]) echo "required"; ?>>
                     </div>
-                    <div id="topics"></div>
+                    <div class="topic-selection row">
+                        <div id="newtopic" style="display:flex;">
+                            <input type="text" id="topic-bar" name="topics[]" placeholder="Insert a topic..." required>
+                            <a class="btn" id="push">Add</a>
+                        </div>
+                        <div id="topics"></div>
+                    </div>
                 </div>
                 <div class="row3">
                     <input type="submit" name="createBtn" value="PUBLIC" class="btn">

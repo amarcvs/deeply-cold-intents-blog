@@ -1,8 +1,8 @@
-const signupform = document.querySelector("#signupform");
-const loginform  = document.querySelector("#loginform");
-const contactform  = document.querySelector("#contactform");
-const errorPar   = document.querySelector("#errorMessage");
-const searchform = document.querySelector('input[name="search"]');
+const signupform  = document.querySelector("#signupform");
+const loginform   = document.querySelector("#loginform");
+const contactform = document.querySelector("#contactform");
+const errorPar    = document.querySelector("#errorMessage");
+const searchform  = document.querySelector('input[name="search"]');
 
 searchform.addEventListener('invalid', function (event) {
     if (event.target.validity.valueMissing) {
@@ -131,7 +131,7 @@ function validaPatternChars(fieldvalue, pattern){
 
 function printError(field, message){
     field.focus();
-    field.style.borderColor = "purple";
+    field.style.borderColor = "red";
     errorPar.innerHTML = message;
     return;
 }

@@ -1,6 +1,72 @@
+.profile {
+    background-color: var(--thirdblack);
+    line-height: 1.5;
+}
+
 .profile-img {
-    width: 8rem;
-    height: 8rem;
+    width: 6.3rem;
+    height: 6.3rem;
     background: url(../src/uploads/profiles/default-user.jpg) no-repeat center center / cover;
     border-radius: 0.5rem;
+}
+.info {
+    color: var(--details);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.card{
+    border: none;
+    background-color: var(--black) !important;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.buttons {
+    text-align: right;
+}
+
+.buttons a {
+    border: 1px solid var(--details) !important;
+    color: var(--details);
+    height: 40px;
+}
+
+.buttons a:hover{
+    color: var(--black) !important;
+    background-color: var(--details);
+}
+
+a.btn.btn-outline-primary.px-4 {
+    cursor: none;
+    border-radius: 0;
+}
+
+a {
+    font-weight: 500;
+}
+
+section.profile a,
+section.profile a:active,
+section.profile a:link,
+section.profile a:visited {
+    color: var(--details) !important;
+}
+
+.bootstrap .btn {
+    border-radius: 0 !important;
+}
+
+a.btn.btn-outline-primary.px-4:hover {
+    background-color: var(--details);
+    color: var(--black) !important;
+}
+
+input.btn.btn-outline-secondary:hover {
+    border-color: var(--details);
+}
+
+.card.p-3.py-4 {
+    border-radius: 0;
 }

@@ -8,7 +8,7 @@
                 exit();
             }
 
-            $limit = 3;
+            $limit = 4;
             include_once("../../includes/utility.inc.php");
 
             $topic  = urldecode($_GET['tag']);
