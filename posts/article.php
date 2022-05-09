@@ -1,4 +1,4 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/header.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/header.php") ?>
 
     <div class="container">
         <div class="hero" id="hero"></div>
@@ -41,10 +41,10 @@
             if($_SESSION["user_id"]) $operations =
             "<div class=\"tags\">
                 <a href=\"manageArticle.php?title=".urlencode($line['p_title'])."&text=".urlencode($line['p_text'])."&date=".$line['p_date']."&img=".$line['p_img_url']."\" class=\"btn\">Update</a>
-                <a href=\"deleteArticle.php?title=".urlencode($line['p_title'])."&date=".$line['p_date']."&img=".$line['p_img_url']."\" class=\"btn\">Delete</a>
+                <a href=\"deleteArticle.php?title=".urlencode($line['p_title'])."&date=".$line['p_date']."&img=".$line['p_img_url']."\" class=\"btn\" onclick=\"return warnBeforeUnload();\">Delete</a>
             </div>";
 
-            echo 
+            echo
             "<div class=\"profile-container\">
                 <div class=\"profile\">
                     <div class=\"img-container\" id=\"img-container\"></div>
@@ -57,7 +57,7 @@
             </div>
             <h2>".$line['p_title']."</h2>
             <div class=\"content\">
-                <p>".$line['p_text']."</p>
+                <!--<p>-->".$line['p_text']."<!--</p>-->
             </div>
             <div class=\"tags\">
                 ".$topics."
@@ -69,4 +69,4 @@
         </main>
     </div>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/footer.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/footer.php") ?>

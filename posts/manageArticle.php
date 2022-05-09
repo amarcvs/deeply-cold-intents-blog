@@ -1,4 +1,4 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/header.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/header.php") ?>
 
     <div class="container">
         <div class="hero"></div>
@@ -11,7 +11,7 @@
         ?>
 
         <main>
-            <form class="formDiv" action="<?php if($_GET["title"]) echo "updateArticle.php?title=".urlencode($_GET["title"])."&oldDate=".$_GET["date"]."&img=".urlencode($_GET['img']); else echo "createArticle.php";?>" method="post" name="form" enctype="multipart/form-data" onSubmit="return checkForm();">
+            <form class="formDiv preview-area" action="<?php if($_GET["title"]) echo "updateArticle.php?title=".urlencode($_GET["title"])."&oldDate=".$_GET["date"]."&img=".urlencode($_GET['img']); else echo "createArticle.php";?>" method="post" name="form" enctype="multipart/form-data" onSubmit="return warnBeforeUnload();">
                 <div class="row">
                     <input type="text" id="titlebox" name="title" placeholder="TITLE" value="<?php if($_GET["title"]) echo urldecode($_GET["title"]) ?>" required focus>
                 </div>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="row" style="display:flex;">
                     <div class="row">
-                        <input type="file" id="fileToUpload" name="fileToUpload" accept="image/*" <?php if(!$_GET["title"]) echo "required"; ?>>
+                        <input class="requiredInput" type="file" id="fileToUpload" name="fileToUpload" accept="image/*" <?php if(!$_GET["title"]) echo "required"; ?>>
                     </div>
                     <div class="topic-selection row">
                         <div id="newtopic" style="display:flex;">
@@ -32,9 +32,37 @@
                 </div>
                 <div class="row3">
                     <input type="submit" name="createBtn" value="PUBLIC" class="btn">
-                    <a href="article.php?" name="previewBtn" class="btn" target="_blank">Preview</a>
+                    <a data-modal-target="#modal" name="previewBtn" class="btn">Preview</a>
                 </div>
             </form>
+
+            <div class="modal" id="modal">
+                <div class="modal-header">
+                    <div class="title">Article preview</div>
+                    <button data-close-button class="close-button">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <main>
+                        <div class="profile-container">
+                            <div class="profile">
+                                <div class="img-container" id="img-container"></div>
+                                <div class="text">
+                                    <h3><?php echo($_SESSION['user_name']); ?></h3>
+                                    <p>Published on <?php echo(date("M d Y"))?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="inserted-title">title here</h2>
+                        <div class="content inserted-text">
+                            <!--<p class="inserted-text"></p>-->
+                        </div>
+                        <!--<div class="tags">
+                            ".$topics."
+                        </div>-->
+                    </main>
+                </div>
+            </div>
+            <div id="overlay"></div>
 
             <script type="text/javascript">
                 document.querySelector('#push').onclick = function() {
@@ -61,4 +89,4 @@
         </main>
     </div>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/footer.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/footer.php") ?>

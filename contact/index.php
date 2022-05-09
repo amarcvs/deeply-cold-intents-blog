@@ -1,11 +1,11 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/header.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/header.php") ?>
 
     <section class="contact">
         <div class="title" id="contact">
             <h2>Get in touch</h2>
             <p>Do not hesitate to contact me if you want to know more about the blog, on a particular post or in case of collaboration.</p>
         </div>
-        <form class="formDiv" action="../includes/sendEmail.php" method="post" name="form" id="contactform" enctype="multipart/form-data" onSubmit="return checkContactForm();">
+        <form class="formDiv" action="../includes/send_email.inc.php" method="post" name="form" id="contactform" enctype="multipart/form-data" onSubmit="return checkContactForm();">
             <div class="row">
                 <input type="text" name="name" placeholder="NAME*" maxlength="30">
                 <input type="email" name="email" placeholder="E-MAIL*" maxlength="30">
@@ -23,4 +23,4 @@
         <p class="errorMessage" id="errorMessage"></p>
     </section>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/footer.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/footer.php") ?>

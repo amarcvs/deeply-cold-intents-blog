@@ -22,7 +22,7 @@
     $result = makeAQuery($deleteQuery, array($title, $date));
 
     $dirPath = "../src/uploads/";
-    include_once("../includes/deleteImg.inc.php");
+    include_once("../includes/delete_img.inc.php");
 
     header("Location: /posts/");
 ?>

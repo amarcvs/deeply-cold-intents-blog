@@ -1,4 +1,4 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/header.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/header.php") ?>
 
     <section class="signup" id="signup">
         <div class="title">
@@ -53,4 +53,4 @@
         <p>
     </section>
     
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/footer.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/footer.php") ?>

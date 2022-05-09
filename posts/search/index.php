@@ -1,4 +1,4 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/header.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/header.php") ?>
     
     <section class="post" id="post">
         <div class="title" id="latestposts">
@@ -31,9 +31,9 @@
             generatePosts($result);
 
             echo "\n\t\t</div>\n";
-            include_once("../../includes/elements/load-moreBtn.php");
-            include_once("../../includes/elements/searchPosts.php");
+            include_once("../../includes/components/load_more_btn.php");
+            include_once("../../includes/components/search_posts.php");
         ?>
     </section>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/footer.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/footer.php") ?>

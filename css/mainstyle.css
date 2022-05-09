@@ -250,6 +250,7 @@ footer .footerMenu li a:hover {
 
 .addWeight {
     font-weight: 700;
+    color: var(--details) !important;
 }
 
 /* forms */

@@ -65,7 +65,7 @@
     }
 
     function makeAQuery($query, $array, $from = "") {
-        include_once($_SERVER['DOCUMENT_ROOT']."/includes/dbHandler.inc.php");
+        include_once($_SERVER['DOCUMENT_ROOT']."/includes/db_handler.inc.php");
 
         $result = pg_query_params(/*$dbconn, */$query, $array);
         if(!$result && $from == "checkForms") {
@@ -76,7 +76,7 @@
         else if(!$result) exit('Query attempt failed. ' . pg_last_error($dbconn));
 
         $res = $result;
-        include_once($_SERVER['DOCUMENT_ROOT']."/includes/clearResources.inc.php");
+        include_once($_SERVER['DOCUMENT_ROOT']."/includes/clear_db_resources.inc.php");
 
         return $res;//$res = $result;
     }

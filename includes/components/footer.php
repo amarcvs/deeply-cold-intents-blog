@@ -29,9 +29,15 @@
         }
     ?>
 <?php 
-    if(strpos($uriPage, 'article') !== false || $uriPage == 'profile') include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/loadImg.php");
-    if(strpos($uriPage, 'manageArticle') !== false) echo("<script type=\"text/javascript\" src=\"/javascript/article.js\"></script>");
-    if(strpos($uriPage, 'signup') !== false || strpos($uriPage, 'login') !== false || strpos($uriPage, 'contact') !== false || strpos($uriPage, 'posts') !== false) echo("<script type=\"text/javascript\" src=\"/javascript/checkForms.js\"></script>")
+    if(strpos($uriPage, 'article') !== false || $uriPage == 'profile') include_once($_SERVER['DOCUMENT_ROOT']."/includes/load_article_imgs_script.inc.php");
+    if(strpos($uriPage, 'manageArticle')!== false) {
+        echo("<script type=\"text/javascript\" src=\"/javascript/article.js\"></script>");
+        echo("<script type=\"text/javascript\" src=\"/javascript/popupArticlePreview.js\"></script>");
+    }
+    if(strpos($uriPage, 'signup') !== false || strpos($uriPage, 'login') !== false || strpos($uriPage, 'contact') !== false || strpos($uriPage, 'posts') !== false || strpos($uriPage, 'profile' || strpos($uriPage, 'manageArticle') !== false) !== false) {
+        echo("<script type=\"text/javascript\" src=\"/javascript/checkForms.js\"></script>");
+        echo("<script type=\"text/javascript\" src=\"/javascript/checkRequiredElements.js\"></script>");
+    }
 ?>
     
 </body>

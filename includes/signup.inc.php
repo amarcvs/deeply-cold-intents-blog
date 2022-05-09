@@ -5,7 +5,7 @@
         $pw         = $_POST['password'];
         $pwRepeated = $_POST['passwordRepeated'];
 
-        require_once 'functions.inc.php';
+        require_once 'check_forms.inc.php';
 
         if(emptyFieldsSignup($email, $username, $pw, $pwRepeated) !== false) {
             header("Location: ../signup/index.php?error=emptyfields");

@@ -1,12 +1,12 @@
 <?php
-    include_once("../includes/create-includes.php");
+    include_once("../includes/create_header.inc.php");
 
     $oldTitle = urldecode($_GET["title"]);
     $oldDate  = $_GET["oldDate"];
 
     if($bannerImage != "") {
         $imgToDelete = urldecode($_GET["img"]);
-        include_once("../includes/deleteImg.inc.php");
+        include_once("../includes/delete_img.inc.php");
         include_once("../includes/upload.inc.php");
     } else {
         $bannerImage = urldecode($_GET["img"]);

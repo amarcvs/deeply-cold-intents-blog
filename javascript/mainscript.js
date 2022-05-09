@@ -72,3 +72,9 @@ $(document).ready(function() {
     if (page.indexOf('.php') !== -1 || page === "postssearch") $(`li#li-posts a`).addClass("addWeight");
     else $(`li#li-${page} a`).addClass("addWeight");
 });
+
+function warnBeforeUnload() {
+    let warning = "Are you sure you want to proceed?";
+    if (confirm(warning)) return true;
+    else return false;
+}

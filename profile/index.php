@@ -1,4 +1,4 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/header.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/header.php") ?>
 
     <section class="profile bootstrap" id="profile">
         <div class="container mt-5">
@@ -28,10 +28,10 @@
                                 ?>
                                 <p><!-- description --><?php echo "<br/><br/>Public created posts: <strong>" . $line['posted'] . "</strong>"; echo "<br/>Public updated posts: <strong>" . $line['updated'] . "</strong>";?><br/><a href="/posts/manageArticle.php">Create a new post</a></p>
                             </div>
-                            <form class="formDiv" name="form" action= <?php echo "../includes/changeImg.inc.php?img=". $_SESSION['user_img']?> method="post" enctype="multipart/form-data">
+                            <form class="formDiv" name="form" action= <?php echo "../includes/change_profile_img.inc.php?img=". $_SESSION['user_img']?> method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <input type="submit" name="createBtn" value="Upload Image" class="btn btn-outline-secondary">
-                                    <input type="file" class="form-control" name="fileToUpload" id="fileToUpload" required>
+                                    <input type="file" class="form-control requiredInput" name="fileToUpload" id="fileToUpload" required>
                                 </div>
                             </form>
                             <div class="buttons">
@@ -44,4 +44,4 @@
         </div>
     </section>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/elements/footer.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/footer.php") ?>

@@ -3,7 +3,7 @@
         $username = $_POST["username"]; //username/email
         $pw = $_POST["password"];
 
-        require_once 'functions.inc.php';
+        require_once 'check_forms.inc.php';
 
         if(emptyFieldsLogin($username, $pw) !== false) {
             header("Location: ../login/index.php?error=emptyfields");

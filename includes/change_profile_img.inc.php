@@ -14,7 +14,7 @@
 
     if($oldImg != "") {
         $dirPath = "../src/uploads/profiles/";
-        include_once("../includes/deleteImg.inc.php");
+        include_once("../includes/delete_img.inc.php");
     }
 
     $dirPath = "../src/uploads/profiles/";

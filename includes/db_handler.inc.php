@@ -1,5 +1,5 @@
 <?php
-    include_once("iniHandler.inc.php");
+    include_once("ini_handler.inc.php");
 
     $dbname     = $ini['DB_NAME'];
     $dbuser     = $ini['DB_USER'];

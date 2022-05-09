@@ -25,12 +25,14 @@
                             echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/bootstrap/bootstrap.css\">"); break;
         }
 
-        if(strpos($uriPage, 'article') !== false|| strpos($uriPage, 'manageArticle') !== false)
-                                        echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/article.css\">");
-        if(strpos($uriPage, 'search')!== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/posts.css\">");
-        if(strpos($uriPage, 'login') !== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/login.css\">");
-        if(strpos($uriPage, 'signup')!== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/signup.css\">");
-        if(strpos($uriPage, 'manageArticle')!== false)  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/manageArticle.css\">");
+        if(strpos($uriPage, 'article') !== false || strpos($uriPage, 'manageArticle') !== false) echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/article.css\">");
+        if(strpos($uriPage, 'search')!== false) echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/posts.css\">");
+        if(strpos($uriPage, 'login') !== false) echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/login.css\">");
+        if(strpos($uriPage, 'signup')!== false) echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/signup.css\">");
+        if(strpos($uriPage, 'manageArticle')!== false) {
+            echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/manageArticle.css\">");
+            echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/popupArticlePreview.css\">");
+        }
     ?>
     <link rel="stylesheet" type="text/css" href="/css/mobile.css">
 </head>
@@ -40,8 +42,8 @@
         <a href="/" class="logo">|DCI|</a>
         <div class="toggleMenu" onclick="toggleMenu();"></div>
         <ul class="navigation">
-            <li id="li-about"><a href="/about/" onclick="toggleMenu()">About</a></li>
             <li id="li-posts"><a href="/posts/" onclick="toggleMenu()">Posts</a></li>
+            <li id="li-about"><a href="/about/" onclick="toggleMenu()">About</a></li>
             <li id="li-contact"><a href="/contact/" onclick="toggleMenu()">Contact</a></li>
             <?php
                 if(isset($_SESSION["user_id"])) {
