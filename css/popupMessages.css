@@ -1,0 +1,83 @@
+/* popup messages style */
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+.modalMsg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid var(--first);
+    z-index: 10;
+    background-color: var(--fifth);
+    width: 100%;
+    height: 80%;
+    max-width: 80%;
+}
+.modalMsgSettings {
+    width: 500px;
+    height: 250px;
+}
+
+.modalMsg.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modalMsg-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--first);
+    color: var(--first);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.modalMsg-header .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modalMsg-header .close-button {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modalMsg-body {
+    padding: 500px 5px 0px 5px;
+}
+
+.modalMsgSettings .modalMsg-body {
+    padding: 10px 15px;
+}
+.modalMsgSettings .modalMsg-body .formDiv .row {
+    display: flex;
+    --bs-gutter-x: 0;
+}
+
+.modalMsgSettings .modalMsg-body input[type="text"] {
+    padding-left: 30px;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}

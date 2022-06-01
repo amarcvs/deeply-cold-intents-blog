@@ -8,6 +8,7 @@
 @media (max-width: 991px) {
     header {
         padding: 20px 20px;
+        justify-content: space-between;
     }
 
     header.sticky {
@@ -37,13 +38,17 @@
         background-position: center;
     }
 
+    /*html[data-theme="light"] .toggleMenu {
+        filter: initial;
+    }*/
+
     .navigation {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100vh;
-        background: var(--black);
+        background-color: var(--first);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -60,7 +65,7 @@
     }
     
     .navigation li a {
-        color: var(--black);
+        color: var(--first);
         font-size: 1.2em;
         letter-spacing: 4px;
         display: inline-block;
@@ -69,6 +74,11 @@
         text-transform: uppercase;
     }
     
+    .theme_icon{
+        margin-left: 0px;
+        margin-top: 50px;
+    }
+
     .navigation.active {
         opacity: 1;
         visibility: visible;
@@ -94,6 +104,10 @@
         grid-template-columns: repeat(1, 1fr);
     }
 
+    .row.settings {
+        flex-direction: column;
+    }
+
     footer {
         padding: 40px 20px;
     }
@@ -113,6 +127,17 @@
     .title {
         padding-top: 50px;
     }
+
+    .bootstrap .card {
+        flex-direction: column !important;
+    }
+
+    /* this form is not available on mobile phones */
+    form.formDiv {
+        display: none;
+        visibility: hidden;
+    }
+
 }
 
 /* Small devices (portrait tablets and large phones, from 601px to 767px) */
@@ -135,7 +160,16 @@
     .home .contentBx h2 {
         font-size: 4.2em;
     }
+
     .home .contentBx h4 {
         font-size: 1.0em;
+    }
+
+    main .profile-container {
+        display: block;
+    }
+
+    main .profile-container .profile {
+        margin-bottom: 20px;
     }
 }

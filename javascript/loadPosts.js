@@ -1,8 +1,9 @@
-
+/* script for load more posts when is clicked the load-more btn, using asynchronous Ajax */
 let loadBtn = document.getElementById("load-more");
-loadBtn.onclick = loadposts;
+if(loadBtn != null)
+    loadBtn.onclick = loadposts;
 
-let numOfPosts = 3;
+let numOfPosts = 4;
 
 function loadposts(e) {
     let httpr = new XMLHttpRequest();
@@ -18,6 +19,9 @@ function manageResponse(e) {
         document.getElementsByName("contentBx")[0].innerHTML = doc.body.childNodes[3].childNodes[3].innerHTML;
         numOfPosts = doc.querySelectorAll('.postsColumn').length;
 
-        if(numOfPosts%3 != 0 || numOfPosts == 0) loadBtn.style.visibility = "hidden";
+        if(numOfPosts%4 != 0 || numOfPosts == 0) {
+            loadBtn.style.opacity = "0.5";
+            loadBtn.style.pointerEvents = "none";
+        }
     }
 }

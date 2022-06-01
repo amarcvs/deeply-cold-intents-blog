@@ -1,3 +1,4 @@
+<!-- script for signup new moderators -->
 <?php
     if(isset($_POST['signupBtn'])) {
         $email      = $_POST['email'];
@@ -8,27 +9,27 @@
         require_once 'check_forms.inc.php';
 
         if(emptyFieldsSignup($email, $username, $pw, $pwRepeated) !== false) {
-            header("Location: ../signup/index.php?error=emptyfields");
+            header('Location: ../signup/index.php?error=emptyfields');
             exit();
         }
 
         if(invalidEmail($email) !== false) {
-            header("Location: ../signup/index.php?error=invalidemail");
+            header('Location: ../signup/index.php?error=invalidemail');
             exit();
         }
 
         if(invalidUsername($username) !== false) {
-            header("Location: ../signup/index.php?error=invalidusername");
+            header('Location: ../signup/index.php?error=invalidusername');
             exit();
         }
         
         if(passwordMatch($pw, $pwRepeated) !== false) {
-            header("Location: ../signup/index.php?error=unmatchpasswords");
+            header('Location: ../signup/index.php?error=unmatchpasswords');
             exit();
         }
 
         if(accountExists($dbconn, $email, $username) !== false) {
-            header("Location: ../signup/index.php?error=existingaccount");
+            header('Location: ../signup/index.php?error=existingaccount');
             exit();
         }
 
@@ -36,7 +37,7 @@
     }
 
     else {
-        header("Location: ../signup/");
+        header('Location: ../signup/');
         exit();
     }
 ?>

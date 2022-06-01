@@ -1,17 +1,17 @@
+<!-- footer component included in every page -->
     <footer>
-        <a href="/" class="logo">BLOG</a>
+        <span class="logo">BLOG</span>
         <ul class="footerMenu">
             <li><a href="/">Home</a></li>
             <li><a href="/about/">About</a></li>
             <li><a href="/posts/">Posts</a></li>
-            <li><a href="/news/">News</a></li>
             <li><a href="/contact/">Contact</a></li>
             <?php
-                if(isset($_SESSION["user_id"])) {
-                    echo("<li><a href=\"/profile/\"><u>".$_SESSION["user_name"]."</u></a></li>");
+                if(isset($_SESSION['user_name'])) {
+                    echo('<li><a href="/profile/"><u>'.$_SESSION['user_name'].'</u></a></li>');
                 }
                 else {
-                    echo("<li><a href=\"/login/\">login</a></li>");
+                    echo('<li><a href="/login/">login</a></li>');
                 }
             ?>
         </ul>
@@ -20,25 +20,24 @@
     
     <div class="cursor"></div>
 
+    <script type="text/javascript" src="/javascript/switchstyle.js"></script>
     <script type="text/javascript" src="/javascript/mainscript.js"></script>
     <?php
-        switch ($uriPage) {
-            case '':            echo("<script type=\"text/javascript\" src=\"/javascript/homepage.js\"></script>");
-                                echo("<script type=\"text/javascript\" src=\"/javascript/encryptedText.js\"></script>");  break;
-            case 'posts':       echo("<script type=\"text/javascript\" src=\"/javascript/loadPosts.js\"></script>");      break;
+        $stylefiles = [];
+
+        if($uriPage === '' || $uriPage === 'index.php') array_push($stylefiles, 'encryptedText.js');
+        else if(strpos($uriPage, 'manageArticle')!== false) array_push($stylefiles, 'article.js', 'popupMessages.js', 'checkForms.js', 'checkRequiredElements.js');
+        else if(strpos($uriPage, 'article') !== false) include_once($_SERVER['DOCUMENT_ROOT'].'/includes/load_imgs_script.inc.php');
+        else if(strpos($uriPage, 'posts') !== false) array_push($stylefiles, 'loadPosts.js', 'checkForms.js', 'checkRequiredElements.js');
+        else if(strpos($uriPage, 'profile') !== false) {
+            include_once($_SERVER['DOCUMENT_ROOT'].'/includes/load_imgs_script.inc.php');
+            array_push($stylefiles, 'checkForms.js', 'popupMessages.js', 'checkRequiredElements.js');
         }
+        else if(strpos($uriPage, 'signup') !== false || strpos($uriPage, 'login') !== false || strpos($uriPage, 'contact') !== false)
+            array_push($stylefiles, 'checkForms.js', 'checkRequiredElements.js');
+
+        foreach ($stylefiles as $file)
+            echo('<script type="text/javascript" src="/javascript/'.$file.'"></script>');
     ?>
-<?php 
-    if(strpos($uriPage, 'article') !== false || $uriPage == 'profile') include_once($_SERVER['DOCUMENT_ROOT']."/includes/load_article_imgs_script.inc.php");
-    if(strpos($uriPage, 'manageArticle')!== false) {
-        echo("<script type=\"text/javascript\" src=\"/javascript/article.js\"></script>");
-        echo("<script type=\"text/javascript\" src=\"/javascript/popupArticlePreview.js\"></script>");
-    }
-    if(strpos($uriPage, 'signup') !== false || strpos($uriPage, 'login') !== false || strpos($uriPage, 'contact') !== false || strpos($uriPage, 'posts') !== false || strpos($uriPage, 'profile' || strpos($uriPage, 'manageArticle') !== false) !== false) {
-        echo("<script type=\"text/javascript\" src=\"/javascript/checkForms.js\"></script>");
-        echo("<script type=\"text/javascript\" src=\"/javascript/checkRequiredElements.js\"></script>");
-    }
-?>
-    
 </body>
 </html>

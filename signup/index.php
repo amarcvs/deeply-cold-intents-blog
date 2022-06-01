@@ -1,8 +1,13 @@
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/header.php") ?>
-
+    <?php
+        if(!(isset($_SESSION['user_name']))) {
+            header("Location: /");
+            exit();
+        }
+    ?>
     <section class="signup" id="signup">
         <div class="title">
-            <h2>Signup</h2>
+            <h2>CREATE A MOD</h2>
             <p>Registration reserved for admins and mods to manage the blog.</p>
         </div>
         <form class="formDiv" action="../includes/signup.inc.php" method="post" name="form" id="signupform" enctype="multipart/form-data" onSubmit="return checkSignupForm();">
@@ -46,7 +51,7 @@
                 }
 
                 else if($_GET["error"] == "none") {
-                    echo '<p class="errorMessage" id="errorMessage">You have signed up successfully! Go to <a href="/login/">login page</a></p>';
+                    echo '<p class="notErrorMessage" id="errorMessage">You have signed up successfully!</p>';
                 }
             }
         ?>

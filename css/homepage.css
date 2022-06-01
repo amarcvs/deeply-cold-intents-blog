@@ -2,11 +2,12 @@
 header {
     display: none;
 }
+
 .home {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--thirdblack);
+    background-color: var(--third);
     padding-top: 0;
 }
 
@@ -36,15 +37,20 @@ header {
     letter-spacing: 4px;
     text-align: center;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--fifth);
     margin-top: 50px;
+}
+
+.home .theme_icon {
+    margin-left: 0px;
+    margin-top: 30px;
 }
 
 /* home effect */
 .home-effect {
     position: fixed;
     opacity: 1;
-    z-index: 1;
+    z-index: 10001;
 }
 
 .intro {

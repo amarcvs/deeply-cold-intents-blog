@@ -1,5 +1,6 @@
+/* profile section */
 .profile {
-    background-color: var(--thirdblack);
+    background-color: var(--third);
     line-height: 1.5;
 }
 
@@ -9,15 +10,22 @@
     background: url(../src/uploads/profiles/default-user.jpg) no-repeat center center / cover;
     border-radius: 0.5rem;
 }
+
 .info {
     color: var(--details);
     font-weight: 600;
     text-transform: uppercase;
 }
 
+span.bg-secondary.p-1.px-4.rounded.text-white {
+    border-radius: 0 0 5px 5px !important;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .card{
     border: none;
-    background-color: var(--black) !important;
+    background-color: var(--first) !important;
     position: relative;
     overflow: hidden;
     border-radius: 8px;
@@ -30,7 +38,7 @@
     top: 0;
     width: 4px;
     height: 100%;
-    background-color: var(--white);
+    background-color: var(--fifth);
     transform: scaleY(1);
     transition: all 0.5s;
     transform-origin: bottom;
@@ -64,12 +72,11 @@
 }
 
 .buttons a:hover{
-    color: var(--black) !important;
+    color: var(--first) !important;
     background-color: var(--details);
 }
 
 a.btn.btn-outline-primary.px-4 {
-    cursor: none;
     border-radius: 0;
 }
 
@@ -90,13 +97,61 @@ section.profile a:visited {
 
 a.btn.btn-outline-primary.px-4:hover {
     background-color: var(--details);
-    color: var(--black) !important;
+    color: var(--first) !important;
 }
 
 input.btn.btn-outline-secondary:hover {
-    border-color: var(--details);
+    background-color: var(--first) !important;
+    color: var(--details) !important;
+    border-color: var(--first) !important;
 }
 
 .card.p-3.py-4 {
     border-radius: 0;
+}
+
+.card.p-3.py-4 > * {
+    letter-spacing: 1px;
+}
+
+input#fileToUpload {
+    color: var(--details);
+}
+
+.bootstrap .card {
+    flex-direction: row !important;
+}
+
+.d-flex.justify-content-center {
+    min-width: 200px !important;
+}
+
+.d-flex.justify-content-center.img-box {
+    border-right: 1px solid var(--third);
+}
+
+
+.px-4.mt-1 {
+    border-bottom: 1px solid var(--third);
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.bootstrap p {
+    margin-top: 1rem !important;
+}
+
+.bootstrap .justify-content-center.img-box {
+    flex-direction: column;
+    justify-content: left !important;
+    align-items: center !important;
+}
+
+.setting {
+    margin-top: 5px;
+}
+
+a.btn.btn-outline-secondary:hover {
+    background-color: var(--details);
+    color: var(--first) !important;
 }

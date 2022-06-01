@@ -1,39 +1,39 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/header.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'].'/includes/components/header.php') ?>
     
     <section class="post" id="post">
         <div class="title" id="latestposts">
         <?php
             if(!(isset($_GET['tag']))) {
-                header("Location: /posts/");
+                header('Location: /posts/');
                 exit();
             }
 
             $limit = 4;
-            include_once("../../includes/utility.inc.php");
+            include_once('../../includes/utility.inc.php');
 
             $topic  = urldecode($_GET['tag']);
             $searchForTopicQuery = "SELECT * FROM post WHERE $1 = ANY(p_topics) ORDER BY p_id DESC LIMIT '$limit';";
             $result = makeAQuery($searchForTopicQuery, array($topic));
             $rows   = pg_num_rows($result);
 
-            echo "\t\t<h2>Tagged \"<span>".$topic."</span>\"</h2>\n";
+            echo '<h2>Tagged "<span>'.$topic.'</span>"</h2>';
 
             if(!$rows)
-                echo "\t\t\t<p>There are no results matching your search!</p>\n";
+                echo '<p>There are no results matching your search!</p>';
             else {
-                if($rows == 1) echo "\t\t\t<p>There is $rows result matching your search:</p>\n";
-                else echo "\t\t\t<p>There are $rows results matching your search:</p>\n";
+                if($rows == 1) echo '<p>There is $rows '.result. 'matching your search:</p>';
+                else echo '<p>There are' .$rows. 'results matching your search:</p>';
             }
 
-            echo "\t\t</div>\n";
-            echo "\t\t<div class=\"contentBx\" name=\"contentBx\">";
+            echo '</div>';
+            echo '<div class="contentBx" name="contentBx">';
 
             generatePosts($result);
 
-            echo "\n\t\t</div>\n";
-            include_once("../../includes/components/load_more_btn.php");
-            include_once("../../includes/components/search_posts.php");
+            echo '</div>';
+            include_once('../../includes/components/load_more_btn.php');
+            include_once('../../includes/components/search_posts.php');
         ?>
     </section>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT']."/includes/components/footer.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'].'/includes/components/footer.php') ?>

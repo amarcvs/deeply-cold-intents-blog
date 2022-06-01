@@ -1,5 +1,6 @@
+<!-- functions for form server-side checks, creating users and login -->
 <?php
-    include_once("utility.inc.php");
+    include_once('utility.inc.php');
 
     /* sign up functions */
     function emptyFieldsSignup($email, $username, $pw, $pwRepeated) {
@@ -47,10 +48,10 @@
     }
 
     function accountExists($dbconn, $email, $username) {
-        $email = strtolower($email); // to make the email field case-insensitive
+        $email = strtolower($email);
 
         $existsQuery = "SELECT * FROM account WHERE a_email = $1 OR a_username = $2;";
-        $result = makeAQuery($existsQuery, array($email, $username), "checkForms");
+        $result = makeAQuery($existsQuery, array($email, $username), 'checkForms');
 
         if($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
             return $line;
@@ -68,7 +69,8 @@
         $createAccountQuery = "INSERT INTO account (a_email, a_username, a_pw) VALUES ($1, $2, $3);";
         makeAQuery($createAccountQuery, array($email, $username, $hashedPassword), "checkForms");
 
-        header("Location: ../signup/index.php?error=none");
+        // header('Location: ../signup/index.php?error=none');
+        header('Location: /profile/index.php?message=mod');
         exit();
     }
 
@@ -89,25 +91,24 @@
         $accountExists = accountExists($dbconn, $username, $username);
 
         if($accountExists === false) {
-            header("Location: ../login/index.php?error=wrongdata");
+            header('Location: ../login/index.php?error=wrongdata');
             exit();
         }
 
         $hashedPassword = hash('SHA512', $pw);
 
-        if($hashedPassword != $accountExists["a_pw"]) {
-            header("Location: ../login/index.php?error=wrongdata");
+        if($hashedPassword != $accountExists['a_pw']) {
+            header('Location: ../login/index.php?error=wrongdata');
             exit();
         }
 
-        else if($hashedPassword == $accountExists["a_pw"]) {
+        else if($hashedPassword == $accountExists['a_pw']) {
             session_start();
 
-            $_SESSION["user_id"]   = $accountExists["a_id"];
-            $_SESSION["user_name"] = $accountExists["a_username"];
-            $_SESSION["user_img"]  = $accountExists["a_img_profile"];
+            $_SESSION['user_name'] = $accountExists['a_username'];
+            $_SESSION['user_img']  = $accountExists['a_img_profile'];
 
-            header("Location: ../profile/");
+            header('Location: ../posts/');
             exit();
         }
     }

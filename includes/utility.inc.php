@@ -1,20 +1,21 @@
+<!-- utility functions for posts sections and queries to dbb -->
 <?php
-    /* utility functions */
     function arrayTopics($array) {
         $len = count($array);
         $string = "";
         for($i = 0; $i < $len; ++$i) {
             if(!(strpos($string, $array[$i]) !== false)) {
-                $string .= $array[$i] . " ";
+                $string .= $array[$i] . "  ";
             }
         }
-        return "{".str_replace(" ", ",", trim($string))."}";
+        return "{".str_replace("  ", ",", trim($string))."}";
     }
 
     function findTopics($t) {
         $topicsArray = explode(',', trim($t, '{}'));
-        for($i = 0; $i < sizeof($topicsArray); ++$i) {
-            if($topicsArray[$i] != "") $topics .= "<a href=\"/posts/search/topics.php?tag=".urlencode(trim($topicsArray[$i], '"'))."\">".trim($topicsArray[$i], '"')."</a>";// class=\"btn topic\"
+        $len = sizeof($topicsArray);
+        for($i = 0; $i < $len; ++$i) {
+            if($topicsArray[$i] != "") $topics .= "<a href=\"/posts/search/topics.php?tag=".urlencode(trim($topicsArray[$i], '"'))."\" class=\"btn\">".trim($topicsArray[$i], '"')."</a>";// class=\"btn topic\"
         }
         return $topics;
     }
@@ -57,7 +58,8 @@
 
         $allTopicsArray = array_unique($allTopicsArray);
         sort($allTopicsArray);
-        for($i = 0; $i < sizeof($allTopicsArray); ++$i) {
+        $len = sizeof($allTopicsArray);
+        for($i = 0; $i < $len; ++$i) {
             if($allTopicsArray[$i] != "") $allTopics .= "<a href=\"/posts/search/topics.php?tag=".trim($allTopicsArray[$i], '"')."\" class=\"btn topic\">".trim($allTopicsArray[$i], '"')."</a>";
         }
 
@@ -67,7 +69,7 @@
     function makeAQuery($query, $array, $from = "") {
         include_once($_SERVER['DOCUMENT_ROOT']."/includes/db_handler.inc.php");
 
-        $result = pg_query_params(/*$dbconn, */$query, $array);
+        $result = pg_query_params($query, $array);
         if(!$result && $from == "checkForms") {
             // exit('Query attempt failed. ' . pg_last_error($dbconn));
             header("Location: ../signup/index.php?error=queryfailed");
@@ -78,6 +80,6 @@
         $res = $result;
         include_once($_SERVER['DOCUMENT_ROOT']."/includes/clear_db_resources.inc.php");
 
-        return $res;//$res = $result;
+        return $res;
     }
 ?>

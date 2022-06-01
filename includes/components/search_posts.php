@@ -1,3 +1,4 @@
+<!-- searchbar component and topics for searching posts -->
         <br/><br/><hr/>
         <div class="title" id="topics">
             <h2>Search or filter by topic</h2>
@@ -13,6 +14,6 @@
                 $topicsQuery = "SELECT p_topics AS topics FROM post;";
                 $result = makeAQuery($topicsQuery, array());
                 $allTopics = findExistingTopics($result);
-                echo "<p>".$allTopics."</p>";
+                echo '<p>'.$allTopics.'</p>';
             ?>
         </div>

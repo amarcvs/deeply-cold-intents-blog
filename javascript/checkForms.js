@@ -1,3 +1,4 @@
+/* functions for form client-side checks, creating users and login */
 const signupform  = document.querySelector("#signupform");
 const loginform   = document.querySelector("#loginform");
 const contactform = document.querySelector("#contactform");
@@ -90,7 +91,7 @@ function checkLoginForm() {
 function checkContactForm() {
     const email  = contactform.email;
     const name  = contactform.name;
-    const text  = contactform.message;
+    const text  = contactform.body;
     let message;
 
     message = "There are empty fields! Fill in email, name and message field.";

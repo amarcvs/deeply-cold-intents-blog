@@ -8,16 +8,30 @@
     font-family: 'Montserrat', sans-serif;
     scroll-behavior: smooth;
     overflow-x: hidden;
-    cursor: none;
 }
 
 :root {
-    --black: #373434;
-    --secondblack: #494646;
-    --thirdblack: #292626;
-    --fourthblack: #1a1818;
-    --details: #209686;
-    --white: #f5f5f5;
+    --details:    #209686;
+    --p-text:     #5b5963;
+    --warning:    red;
+    --notwarning: #00ff00;
+    --article:    white;
+
+    --first:  #373434;
+    --second: #494646;
+    --third:  #292626;
+    --fourth: #1a1818;
+    --fifth:  #f5f5f5;
+}
+
+html[data-theme="light"] {
+    --details: #bb4646;
+    --articleDetails: #373434;
+
+    --first:  #0f0f0f;
+    --second: black;
+    --third:  black;
+    --fourth: #0f0f0f;
 }
 
 ::-webkit-scrollbar {
@@ -25,21 +39,25 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--details);
-}
-
-::-moz-selection {
-    background: var(--details);
-    color: var(--black);
+    background-color: var(--details);
 }
 
 ::selection {
-    background: var(--details);
-    color: var(--black);
+    background-color: var(--details);
+    color: var(--first);
+}
+
+::-moz-selection {
+    background-color: var(--details);
+    color: var(--first);
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--fifth);
 }
 
 body {
-    background-color: var(--secondblack);
+    background-color: var(--second);
 }
 
 a,
@@ -60,9 +78,9 @@ header {
     width: 100%;
     padding: 20px 100px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    background: var(--black);
+    background-color: var(--first);
     z-index: 1000;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     transition: 0.5s;
@@ -82,9 +100,10 @@ header ul li {
 }
 
 header ul li a {
-    margin: 0 0 0 30px;
+    margin: 0 15px 0 15px;
     text-decoration: none;
-    color: var(--white) !important;
+    color: var(--fifth) !important;
+    letter-spacing: 1.5px;
 }
 
 header ul li a:hover {
@@ -96,13 +115,13 @@ header.sticky ul li a {
 }
 
 header.sticky ul li a:hover {
-    color: var(--white) !important;
+    color: var(--fifth) !important;
 }
 
 .logo {
     position: relative;
     display: inline-block;
-    color: var(--white) !important;
+    color: var(--fifth) !important;
     text-decoration: none;
     font-size: 1.5em;
     font-weight: 500;
@@ -123,18 +142,19 @@ section {
     padding: 8px 20px;
     margin-top: 20px;
     color: var(--details);
-    background: var(--black);
+    background-color: var(--first);
     text-decoration: none;
     font-size: 18px;
     font-weight: 400;
     letter-spacing: 2px;
     text-transform: uppercase;
     transition: 0.25s;
+    cursor: pointer;
 }
 
 .btn:hover {
-    color: var(--black);
-    background: var(--details);
+    color: var(--first);
+    background-color: var(--details);
 }
 
 .title {
@@ -159,7 +179,7 @@ section {
 }
 
 p {
-    color: var(--white);
+    color: var(--fifth);
     font-weight: 300;
     text-align: justify;
 }
@@ -172,7 +192,7 @@ p {
 }
 
 ::placeholder {
-    color: var(--black);
+    color: var(--first);
 }
 
 footer {
@@ -181,7 +201,7 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: var(--fourthblack);
+    background-color: var(--fourth);
     border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -197,7 +217,7 @@ footer .footerMenu li a {
     display: inline-block;
     text-decoration: none;
     margin: 20px;
-    color: var(--white);
+    color: var(--fifth);
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -207,7 +227,7 @@ footer .footerMenu li a:hover {
 }
 
 .copyright {
-    color: var(--white);
+    color: var(--fifth);
     text-align: center;
     letter-spacing: 1px;
 }
@@ -238,14 +258,6 @@ footer .footerMenu li a:hover {
     transform: scale(2);
     border: 1px solid var(--details);
     background-color: initial;
-}
-
-.hidecursor {
-    display: none !important;
-}
-
-.showcursor {
-    cursor: initial !important;
 }
 
 .addWeight {
@@ -288,9 +300,9 @@ footer .footerMenu li a:hover {
 .formDiv .row3 textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid var(--black);
+    border: 1px solid var(--first);
     outline: none;
-    background: var(--black);
+    background-color: var(--first);
     color: var(--details);
     font-size: 16px;
     font-weight: 400;
@@ -300,7 +312,7 @@ footer .footerMenu li a:hover {
 .formDiv .row input:focus,
 .formDiv .row2 input:focus,
 .formDiv .row3 textarea:focus {
-    background-color: var(--thirdblack);
+    background-color: var(--third);
 }
 
 .formDiv input#titlebox {
@@ -313,16 +325,16 @@ footer .footerMenu li a:hover {
 }
 
 .formDiv .row3 input[type="submit"] {
-    background: var(--black);
+    background-color: var(--first);
     color: var(--details);
-    border: 1px solid var(--black);
+    border: 1px solid var(--first);
     outline: none;
 }
 
 .formDiv .row input[type="submit"]:hover,
 .formDiv .row3 input[type="submit"]:hover {
-    background: var(--details);
-    color: var(--black);
+    background-color: var(--details);
+    color: var(--first);
 }
 
 /* form style changes for an article creation */
@@ -352,8 +364,8 @@ main textarea {
 
 main input[type="text"]:focus,
 main textarea:focus {
-    border-bottom: 1px solid var(--black) !important;
-    background-color: white !important;
+    border-bottom: 1px solid var(--first) !important;
+    background-color: var(--fifth) !important;
 }
 
 main .formDiv .row3 textarea {
@@ -361,16 +373,27 @@ main .formDiv .row3 textarea {
 }
 
 ::placeholder {
-    color: var(--white);
+    color: var(--fifth);
     opacity: .5;
 }
 
 /* error messages */
-.errorMessage {
-    margin-top: 20px;
-    color: red;
+.errorMessage,
+.notErrorMessage {
+    margin-top: 10px;
     font-weight: 300;
     list-style: initial;
+    text-align: center;
+    border-top: 1px solid var(--third);
+    padding-top: 10px;
+}
+
+.errorMessage {
+    color: var(--warning);
+}
+
+.notErrorMessage {
+    color: var(--notwarning);
 }
 
 /* hidden anchor for load-more btn */
@@ -379,4 +402,16 @@ main .formDiv .row3 textarea {
     position: relative;
     top: -120px;
     visibility: hidden;
+}
+
+/* switch theme style */
+.theme_icon{
+    color: var(--details);
+    transition: transform 0.5s;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.flip {
+    transform: rotate(-360deg) !important;
 }

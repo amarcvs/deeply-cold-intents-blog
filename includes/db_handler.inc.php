@@ -1,5 +1,6 @@
+<!-- script for database handling connection -->
 <?php
-    include_once("ini_handler.inc.php");
+    include_once('ini_handler.inc.php');
 
     $dbname     = $ini['DB_NAME'];
     $dbuser     = $ini['DB_USER'];

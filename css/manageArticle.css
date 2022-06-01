@@ -1,30 +1,31 @@
+/* manageArticle section */
 input#titlebox,
 textarea,
 input#fileToUpload,
 input[type="text"]#topic-bar {
-    background-color: var(--white) !important;
-    color: var(--black) !important;
-    border-color: white;
+    background-color: var(--fifth) !important;
+    color: var(--first) !important;
+    border-color: var(--fifth);
 }
 
 label {
-    color: var(--black);
+    color: var(--first);
 }
 
 input#fileToUpload {
-    color: var(--black) !important;
+    color: var(--first) !important;
 }
 
 .btn {
     background-color: var(--details) !important;
     border: 1px solid var(--details) !important;
-    color: var(--black) !important;
+    color: var(--first) !important;
     margin-left: 20px !important;
 }
 
 .btn:hover {
-    background-color: var(--black) !important;
-    border: 1px solid var(--black) !important;
+    background-color: var(--first) !important;
+    border: 1px solid var(--first) !important;
     color: var(--details) !important;
 }
 
@@ -37,8 +38,14 @@ main input[type="text"]#topic-bar:focus {
 }
 
 .topic-selection.row {
-    display: flex;
+    display: block;
     margin: 0;
+}
+
+.topic-selection.row input[type="text"] {
+    font-size: 1rem !important;
+    background-color: var(--fifth);
+    color: var(--first);
 }
 
 .formDiv .row {
@@ -47,4 +54,10 @@ main input[type="text"]#topic-bar:focus {
 
 main .formDiv .row3 textarea {
     margin-bottom: 40px;
+    font-size: 1.1rem !important;
+    color: var(--p-text) !important;
+}
+
+.row.settings {
+    display: flex;
 }
